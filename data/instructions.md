@@ -22,32 +22,50 @@ This command does not raise `CF` flag
 Multiplication and Division
 ===========================
 
-### `mul a`/`imul a`
-The location of a result depends on the type of `a`:
+### `mul a`
 
 Multiplier type | Operation performed
 --------------- | -------------
-Byte | `al = al * a`
-Word | `(dx, ax) = ax * a`
-Dword | `(edx, eax) = eax * a`
+`byte` | `al = al * a`
+`word` | `(dx, ax) = ax * a`
+`dword` | `(edx, eax) = eax * a`
 
+`mul` multiplies unsigned numbers
+
+### `imul a`
+
+Multiplier type | Operation performed
+--------------- | -------------
+`byte` | `al = al * a`
+`word` | `(dx, ax) = ax * a`
+`dword` | `(edx, eax) = eax * a`
 
 `imul` multiplies signed numbers and can have more than one operand
 
 ### `imul a, b`
 `a *= b`
+
 `a` and `b` have to be of same type
+
+`imul` multiplies signed numbers
 
 ### `imul a, b, c`
 `a = b * c`
+
 `c` has to be a constant
+
 `a` and `b` have to be of same type
 
-### `div a`/`idiv a`
-The location of a result depends on the type of `a`:
+`imul` multiplies signed numbers
+
+### `div a`
 
 Divider type | Operation performed
 ------------ | -------------
-Byte | `al = ax / a`
-Word | `(dx, ax) = ax * a`
-Dword | `(edx, eax) = eax * a`
+`byte` | `al = ax / a` <br> `ah = ax % a`
+`word` | `ax = (dx, ax) / a` <br> `dx = (dx, ax) % a`
+`dword` | `eax = (edx, eax) / a` <br> `edx = (edx, eax) % a`
+
+`div` operates with unsigned numbers
+
+Warning: before performing division with `word` or `byte` types be sure to convert registers (`ax` or `eax`) to apropriate types
