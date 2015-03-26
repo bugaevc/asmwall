@@ -13,10 +13,11 @@ ul {
 
 li {
     display: block;
+    cursor: pointer;
     padding: 10px;
     list-style-type: none;
     font-family: monospace;
-    font-size: 20px;
+    font-size: 150%;
     transition: background 0.3s;
 }
 
