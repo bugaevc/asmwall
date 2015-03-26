@@ -1,10 +1,25 @@
 Addition and Subtraction
 ========================
 
-## `ADD a, b`
-Equivalent to `a += b` in C.
+## `add a, b`
+`a += b`
 `a` and `b` can't both be memory.
 
-## `SUB a, b`
-Equivalent to `a -= b` in C.
+## `sub a, b`
+`a -= b`
 `a` and `b` can't both be memory.
+
+## `inc a`
+`a++`
+
+## `dec a`
+`a--`
+
+Multiplication and Division
+===========================
+
+## `mul a`
+`eax:edx = eax*a`
+
+## `div a`
+`eax, edx = divmod(eax:edx, a)`
