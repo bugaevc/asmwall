@@ -69,3 +69,23 @@ Divider type | Operation performed
 `div` operates with unsigned numbers
 
 Warning: before performing division with `word` or `byte` types be sure to convert registers (`ax` or `eax`) to apropriate types
+
+### `idiv a`
+
+Divider type | Operation performed
+------------ | -------------
+`byte` | `al = ax / a` <br> `ah = ax % a`
+`word` | `ax = (dx, ax) / a` <br> `dx = (dx, ax) % a`
+`dword` | `eax = (edx, eax) / a` <br> `edx = (edx, eax) % a`
+
+`idiv` operates with signed numbers
+
+Warning: before performing division with `word` or `byte` types be sure to convert registers (`ax` or `eax`) to apropriate types
+
+### `lea a, [address]`
+
+`lea` calculates an `address` expression and writes it back to `a` 
+
+`address` is an expression formatted like this: `base + index * scale + displacement`
+
+`base` is a register, `index` is any register except `esp`, `scale` is a number from {0, 1, 2, 4, 8}, `displacement` is an arithmetic expression
