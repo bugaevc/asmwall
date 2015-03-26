@@ -1,4 +1,25 @@
+body {
+    padding: 0 10%;
+}
+
 h1 {
     text-align: center;
     border-bottom: 1px solid #EEE;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    display: block;
+    padding: 10px;
+    list-style-type: none;
+    font-family: monospace;
+    font-size: 20px;
+    transition: background 0.3s;
+}
+
+li:hover, li:active {
+    background: #EEE;
 }
