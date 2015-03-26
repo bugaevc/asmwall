@@ -3,10 +3,12 @@ Addition and Subtraction
 
 ## `add a, b`
 `a += b`
+
 `a` and `b` can't both be memory.
 
 ## `sub a, b`
 `a -= b`
+
 `a` and `b` can't both be memory.
 
 ## `inc a`
