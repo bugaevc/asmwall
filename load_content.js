@@ -40,7 +40,16 @@ $(document).ready(function() {
                     var content = arr[i].replace(/#/g, '').replace(/`/g, '');
                     content = $.trim(content);
                     if(showAll)
-                        $("<li></li>").text(content).appendTo($list);
+                    {
+                        var $a = $("<a></a>");
+                        var href = '?' + content.replace(/ /g, '_');
+                        $a
+                            .attr("href", href)
+                            .text(content);
+                        $('<li></li>')
+                            .append($a)
+                            .appendTo($list);
+                    }
                     else
                         isCurrent = (command === content);
                 }

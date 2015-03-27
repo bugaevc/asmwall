@@ -24,6 +24,12 @@ h1 {
     transition: background 0.3s;
 }
 
+.instructions li a {
+    display: block;
+    color: initial;
+    text-decoration: none;
+}
+
 .instructions li:hover,
 .instructions li:active {
     background: #EEE;
