@@ -46,7 +46,7 @@ Multiplier type | Operation performed
 `word` | `(dx:ax) = ax * a`
 `dword` | `(edx:eax) = eax * a`
 
-`imul` multiplies signed numbers and can have more than one operand.
+`imul` multiplies signed numbers.
 
 ### `imul a, b`
 
