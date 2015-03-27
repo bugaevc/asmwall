@@ -7,20 +7,24 @@ h1 {
     border-bottom: 1px solid #EEE;
 }
 
-ul {
+#content {
+    font-size: 150%;
+}
+
+.instructions ul {
     padding: 0;
 }
 
-li {
+.instructions li {
     display: block;
     cursor: pointer;
     padding: 10px;
     list-style-type: none;
     font-family: monospace;
-    font-size: 150%;
     transition: background 0.3s;
 }
 
-li:hover, li:active {
+.instructions li:hover,
+.instructions li:active {
     background: #EEE;
 }
