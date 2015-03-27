@@ -25,6 +25,34 @@ This command does not raise `CF` flag.
 
 This command does not raise `CF` flag.
 
+### `adc a, b`
+
+`a += b + CF`
+
+This command is generally used for qwords addition:
+```
+; calculate u+v
+; u in (edx:eax), v in (ebx:ecx)
+add eax, ecx
+adc edx, ebx
+```
+
+`a` and `b` can't both be memory.
+
+### `sbb a, b`
+
+`a -= b + CF`
+
+`a` and `b` can't both be memory.
+
+This command is generally used for qwords subtraction:
+```
+; calculate u-v
+; u in (edx:eax), v in (ebx:ecx)
+sub eax, ecx
+sbb edx, ebx
+```
+
 Multiplication and Division
 ===========================
 
