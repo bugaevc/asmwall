@@ -122,7 +122,7 @@ be sure to convert registers (`ax` or `eax`) to appropriate types.
 
 ### `lea a, [address]`
 
-`lea` calculates an `address` expression and writes it back to `a` .
+`lea` calculates an `address` expression and writes it back to `a`.
 
 `address` is an expression formatted like this: `base + index * scale + displacement`.
 
