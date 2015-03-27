@@ -33,8 +33,8 @@ Multiplication and Division
 Multiplier type | Operation performed
 --------------- | -------------------
 `byte` | `al = al * a`
-`word` | `(dx, ax) = ax * a`
-`dword` | `(edx, eax) = eax * a`
+`word` | `(dx:ax) = ax * a`
+`dword` | `(edx:eax) = eax * a`
 
 `mul` multiplies unsigned numbers.
 
@@ -43,8 +43,8 @@ Multiplier type | Operation performed
 Multiplier type | Operation performed
 --------------- | -------------------
 `byte` | `al = al * a`
-`word` | `(dx, ax) = ax * a`
-`dword` | `(edx, eax) = eax * a`
+`word` | `(dx:ax) = ax * a`
+`dword` | `(edx:eax) = eax * a`
 
 `imul` multiplies signed numbers and can have more than one operand.
 
@@ -71,8 +71,8 @@ Multiplier type | Operation performed
 Divider type | Operation performed
 ------------ | -------------------
 `byte` | `al = ax / a` <br> `ah = ax % a`
-`word` | `ax = (dx, ax) / a` <br> `dx = (dx, ax) % a`
-`dword` | `eax = (edx, eax) / a` <br> `edx = (edx, eax) % a`
+`word` | `ax = (dx:ax) / a` <br> `dx = (dx:ax) % a`
+`dword` | `eax = (edx:eax) / a` <br> `edx = (edx:eax) % a`
 
 `div` operates with unsigned numbers.
 
@@ -84,8 +84,8 @@ be sure to convert registers (`ax` or `eax`) to appropriate types.
 Divider type | Operation performed
 ------------ | -------------------
 `byte` | `al = ax / a` <br> `ah = ax % a`
-`word` | `ax = (dx, ax) / a` <br> `dx = (dx, ax) % a`
-`dword` | `eax = (edx, eax) / a` <br> `edx = (edx, eax) % a`
+`word` | `ax = (dx:ax) / a` <br> `dx = (dx:ax) % a`
+`dword` | `eax = (edx:eax) / a` <br> `edx = (edx:eax) % a`
 
 `idiv` operates with signed numbers.
 
