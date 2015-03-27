@@ -129,4 +129,64 @@ be sure to convert registers (`ax` or `eax`) to appropriate types.
 `base` is a register, `index` is any register except `esp`, `scale` is a number
 from {0, 1, 2, 4, 8}, `displacement` is an arithmetic expression.
 
+Data Movements and Size Conversion
+==================================
 
+### `mov a, b`
+
+`a = b`
+
+`a` and `b` can't both be memory.
+
+### `movzx a, b`
+
+`a = b`
+
+`a` has to be longer than `b`. The remaining space will be filled with zeroes.
+
+`a` and `b` can't both be memory.
+
+### `movsx a, b`
+
+`a = b`
+
+`a` has to be longer than `b`. The remaining space will be filled with with the first bit
+of `a`, which denotes the sign for signed numbers.
+
+`a` and `b` can't both be memory.
+
+### `cdq`
+
+Equivalent to:
+```
+mov edx, eax
+shr edx, 31
+```
+
+This instruction is generally used to convert dwords to qwords before performing signed division.
+
+### `cwd`
+
+Equivalent to:
+```
+mov dx, ax
+shr dx, 15
+```
+
+This instruction is generally used to convert words to dwords before performing signed division.
+
+### `cbw`
+
+Equivalent to:
+```
+movsx ax, al
+```
+
+This instruction is generally used to convert bytes to words before performing signed division.
+
+### `cwde`
+
+Equivalent to:
+```
+movsx eax, ax
+```
