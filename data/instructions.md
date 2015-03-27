@@ -104,7 +104,7 @@ Divider type | Operation performed
 
 `div` operates with unsigned numbers.
 
-*Warning*: before performing division with `word` or `byte` types
+*Warning:* before performing division with `word` or `byte` types
 be sure to convert registers (`ax` or `eax`) to appropriate types.
 
 ### `idiv a`
@@ -117,7 +117,7 @@ Divider type | Operation performed
 
 `idiv` operates with signed numbers.
 
-*Warning*: before performing division with `word` or `byte` types
+*Warning:* before performing division with `word` or `byte` types
 be sure to convert registers (`ax` or `eax`) to appropriate types.
 
 ### `lea a, [address]`
