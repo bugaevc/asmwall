@@ -41,7 +41,8 @@ $(document).ready(function() {
                     content = $.trim(content);
                     if(showAll)
                     {
-                        var $a = $("<a></a>");
+                        var $a = $("<a></a>")
+				.addClass("block-link");
                         var href = '?' + content.replace(/ /g, '_');
                         $a
                             .attr("href", href)

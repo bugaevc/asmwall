@@ -24,7 +24,7 @@ h1 {
     transition: background 0.3s;
 }
 
-.instructions li a {
+.block-link {
     display: block;
     color: initial;
     text-decoration: none;
