@@ -1,4 +1,49 @@
-h1 {
-    text-align: center;
+body {
+    padding: 0 10%;
+}
+
+header {
     border-bottom: 1px solid #EEE;
+}
+header h1 {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+#content {
+    font-size: 150%;
+}
+
+table {
+    font-size: inherit;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 5px 15px;
+    border: 1px solid #EEE;
+}
+
+.instructions ul {
+    padding: 0;
+}
+
+.instructions li {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    list-style-type: none;
+    font-family: monospace;
+    transition: background 0.3s;
+}
+
+.instructions li:hover,
+.instructions li:active {
+    background: #EEE;
+}
+
+.block-link {
+    display: block;
+    color: initial;
+    text-decoration: none;
 }
