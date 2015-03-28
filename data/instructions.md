@@ -25,6 +25,10 @@ This command does not raise `CF` flag.
 
 This command does not raise `CF` flag.
 
+### `neg a`
+
+`a = -a`
+
 ### `adc a, b`
 
 `a += b + CF`
