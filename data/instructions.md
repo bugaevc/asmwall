@@ -136,6 +136,14 @@ Data Transfer and Size Conversion
 
 `a` and `b` can't both be memory.
 
+### `xchg a, b`
+
+`a, b = b, a`
+
+A fast way to exchange two numbers.
+
+`a` and `b` can't both be memory.
+
 ### `movzx a, b`
 
 `a = b`
@@ -191,3 +199,104 @@ Equivalent to:
 ```
 movsx eax, ax
 ```
+
+Execution Control and Stack Management
+======================================
+
+### `jmp label`
+
+Continue the execution from the instruction that's labelled `label`.
+
+### `call label`
+
+Push the address of the next instruction onto the stack, then `jmp label`.
+
+This instruction is usually used to call procedures and functions, since the
+address it puts on stack can be used as return address after the callee exits.
+
+### `ret`
+
+Pop an address from the stack and `jmp` there.
+
+This instruction is usually used together with `call` to organize function calling.
+
+### `loop label`
+
+Equivalent to:
+```
+dec ecx
+jnz label
+```
+
+This instruction is usually used for implementing loops with post-condition where
+`ecx` is used as loop counter.
+
+### `push a`
+
+Roughly equivalent to:
+```
+sub esp, sizeof(a)
+mov dword[esp], a
+```
+
+This instruction pushes a value onto stack, decrementing stack pointer by dword.
+Unlike the code above, it can work with memory locations.
+
+### `pop a`
+
+Roughly equivalent to:
+```
+mov a, dword[esp]
+add esp, sizeof(a)
+```
+
+This instruction pops a value from the stack, incrementing stack pointer by dword.
+Unlike the code above, it can work with memory locations. Note that the data is not
+erased or destroyed in any way.
+
+*Note:* to pop a value without storing it, use `add esp, sizeof(a)`.
+
+### `leave`
+
+Equivalent to:
+```
+mov esp, ebp
+pop ebp
+```
+
+This instruction is usually used for restoring the stack state at the end of a
+function or a procedure.
+
+### `pushad`
+
+Equivalent to:
+```
+mov dword[esp +  4], eax
+mov dword[esp +  8], ecx
+mov dword[esp + 12], edx
+mov dword[esp + 16], ebx
+mov dword[esp + 20], esp
+mov dword[esp + 24], ebp
+mov dword[esp + 28], esi
+mov dword[esp + 32], edi
+sub esp, 32
+```
+
+This instruction pushes nearly all registers to the stack.
+
+### `popad`
+
+Equivalent to:
+```
+add esp, 32
+mov eax, dword[esp +  4]
+mov ecx, dword[esp +  8]
+mov edx, dword[esp + 12]
+mov ebx, dword[esp + 16]
+; do not mov esp, dword[esp + 20]
+mov ebp, dword[esp + 24]
+mov esi, dword[esp + 28]
+mov edi, dword[esp + 32]
+```
+
+This instruction pops nearly all registers from the stack.
