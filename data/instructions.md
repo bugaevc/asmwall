@@ -88,9 +88,7 @@ Multiplier type | Operation performed
 
 `a = b * c`
 
-`c` has to be a constant.
-
-`a` and `b` have to be of same type.
+`c` has to be a constant, `a` and `b` have to be of same type.
 
 `imul` multiplies signed numbers.
 
@@ -129,7 +127,7 @@ be sure to convert registers (`ax` or `eax`) to appropriate types.
 `base` is a register, `index` is any register except `esp`, `scale` is a number
 from {0, 1, 2, 4, 8}, `displacement` is an arithmetic expression.
 
-Data Movements and Size Conversion
+Data Transfer and Size Conversion
 ==================================
 
 ### `mov a, b`
@@ -163,7 +161,8 @@ mov edx, eax
 shr edx, 31
 ```
 
-This instruction is generally used to convert dwords to qwords before performing signed division.
+This instruction is generally used to convert dwords to qwords before performing
+signed division.
 
 ### `cwd`
 
@@ -173,7 +172,8 @@ mov dx, ax
 shr dx, 15
 ```
 
-This instruction is generally used to convert words to dwords before performing signed division.
+This instruction is generally used to convert words to dwords before performing
+signed division.
 
 ### `cbw`
 
@@ -182,7 +182,8 @@ Equivalent to:
 movsx ax, al
 ```
 
-This instruction is generally used to convert bytes to words before performing signed division.
+This instruction is generally used to convert bytes to words before performing
+signed division.
 
 ### `cwde`
 
