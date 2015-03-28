@@ -25,6 +25,10 @@ This command does not raise `CF` flag.
 
 This command does not raise `CF` flag.
 
+### `neg a`
+
+`a = -a`
+
 ### `adc a, b`
 
 `a += b + CF`
@@ -300,3 +304,70 @@ mov edi, dword[esp + 32]
 ```
 
 This instruction pops nearly all registers from the stack.
+
+Bitwise Operations
+==================
+
+### `and a, b`
+
+`a &= b`
+
+`a` and `b` can't both be memory.
+
+### `or a, b`
+
+`a |= b`
+
+`a` and `b` can't both be memory.
+
+### `xor a, b`
+
+`a ^= b`
+
+`a` and `b` can't both be memory.
+
+### `not a`
+
+`a = ~a`
+
+`~a` equals `(-a-1)` for signed numbers and `(maxval - a)` for unsigned ones.
+
+### `shl a, b`
+
+`a <<= b % 32`
+
+`b` can be either a constant or the `cl` register.
+
+`CF` flag is set to the last bit that was shifted out. All the shifted in bits are
+filled with zeroes. If `(b % 32)` equals `1`, `OF` is set to `CF^SF`.
+
+*Note:* this is the same as the `sal` instruction.
+
+### `sal a, b`
+
+`a <<= b % 32`
+
+`b` can be either a constant or the `cl` register.
+
+`CF` flag is set to the last bit that was shifted out. All the shifted in bits are
+filled with zeroes. If `(b % 32)` equals `1`, `OF` is set to `CF^SF`.
+
+*Note:* this is the same as the `shl` instruction.
+
+### `shr a, b`
+
+`a >>= b % 32`
+
+`b` can be either a constant or the `cl` register.
+
+`CF` flag is set to the last bit that was shifted out. All the shifted in bits are
+filled with zeroes.
+
+### `sar a, b`
+
+`a >>= b % 32`
+
+`b` can be either a constant or the `cl` register.
+
+`CF` flag is set to the last bit that was shifted out. All the shifted in bits are
+filled with the sign bit of `a`.
