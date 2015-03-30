@@ -326,6 +326,9 @@ Bitwise Operations
 
 `a` and `b` can't both be memory.
 
+This instruction is often used in form of `xor a, a` in order to set `a` to zero.
+It is shorter than a simple `mov a, 0` when translated to the machine code.
+
 ### `not a`
 
 `a = ~a`
@@ -371,3 +374,24 @@ filled with zeroes.
 
 `CF` flag is set to the last bit that was shifted out. All the shifted in bits are
 filled with the sign bit of `a`.
+
+Conditionals
+============
+
+### `jCC label`
+
+Perform `jmp label` if the condition holds true.
+
+### `setCC a`
+
+`a = CC ? 1 : 0`
+
+`a` has to be a single byte.
+
+This instruction sets `a` to `1` if the condition holds true and to zero otherwise.
+
+### `cmovCC a, b`
+
+Perform `mov a, b` if the condition holds true.
+
+`a` and `b` both have to be registers.
