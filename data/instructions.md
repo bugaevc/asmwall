@@ -326,6 +326,9 @@ Bitwise Operations
 
 `a` and `b` can't both be memory.
 
+This instruction is often used in form of `xor a, a` in order to set `a` to zero.
+It is shorter than a simple `mov a, 0` when translated to the machine code.
+
 ### `not a`
 
 `a = ~a`
