@@ -396,7 +396,7 @@ after `cmp a, b` instruction:
 `le` | `ng` | `SF != OF` or `ZF` | `a <= b` | Signed
 `l` | `nge` | `SF != OF` | `a < b` | Signed
 `ae` | `nb` | `!CF` | `a >= b` | Unsigned
-`a` | `nbe` | `!CF` and !ZF | `a > b` | Unsigned
+`a` | `nbe` | `!CF` and `!ZF` | `a > b` | Unsigned
 `be` | `na` | `CF` or `ZF` | `a <= b` | Unsigned
 `b` | `nae` | `CF` | `a < b` | Unsigned
 
@@ -404,16 +404,16 @@ Flag-based instructions:
 
  CC | Flags
 :--:|:-----:
- `z` | ZF
- `c` | CF
- `o` | OF
- `s` | SF
- `p` | PF
- `nz` | !ZF
- `nc` | !CF	
- `no` | !OF
- `ns` | !SF
- `np` | !PF
+ `z` | `ZF`
+ `c` | `CF`
+ `o` | `OF`
+ `s` | `SF`
+ `p` | `PF`
+ `nz` | `!ZF`
+ `nc` | `!CF`	
+ `no` | `!OF`
+ `ns` | `!SF`
+ `np` | `!PF`
 
 ### `jecxz label`
 
