@@ -441,8 +441,74 @@ This instruction is usually used for implementing loops with post-condition wher
 
 This instruction sets `a` to `1` if the condition holds true and to zero otherwise.
 
+Some conditions are only flag-based and some make sense if executed after `cmp` instruction.
+
+The following table specifies possible meanings of using conditional jumps
+after `cmp a, b` instruction:
+
+ CC | Alternative CC | Flags | Meaning | Signity
+:--:|:--------------:|:----- |:-------:|:-------:
+`e` | `z` | `ZF` | `a == b` | Both
+`ne` | `nz` | `!ZF` | `a != b` | Both
+`ge` | `nl` | `SF == OF` | `a >= b` | Signed
+`g` | `nle` | `SF == OF` and `!ZF` | `a > b` | Signed
+`le` | `ng` | `SF != OF` or `ZF` | `a <= b` | Signed
+`l` | `nge` | `SF != OF` | `a < b` | Signed
+`ae` | `nb` | `!CF` | `a >= b` | Unsigned
+`a` | `nbe` | `!CF` and `!ZF` | `a > b` | Unsigned
+`be` | `na` | `CF` or `ZF` | `a <= b` | Unsigned
+`b` | `nae` | `CF` | `a < b` | Unsigned
+
+Flag-based conditions:
+
+ CC | Flags
+:--:|:-----:
+ `z` | `ZF`
+ `c` | `CF`
+ `o` | `OF`
+ `s` | `SF`
+ `p` | `PF`
+ `nz` | `!ZF`
+ `nc` | `!CF`	
+ `no` | `!OF`
+ `ns` | `!SF`
+ `np` | `!PF`
+
 ### `cmovCC a, b`
 
 Perform `mov a, b` if the condition holds true.
 
 `a` and `b` both have to be registers.
+
+Some conditions are only flag-based and some make sense if executed after `cmp` instruction.
+
+The following table specifies possible meanings of using conditional jumps
+after `cmp a, b` instruction:
+
+ CC | Alternative CC | Flags | Meaning | Signity
+:--:|:--------------:|:----- |:-------:|:-------:
+`e` | `z` | `ZF` | `a == b` | Both
+`ne` | `nz` | `!ZF` | `a != b` | Both
+`ge` | `nl` | `SF == OF` | `a >= b` | Signed
+`g` | `nle` | `SF == OF` and `!ZF` | `a > b` | Signed
+`le` | `ng` | `SF != OF` or `ZF` | `a <= b` | Signed
+`l` | `nge` | `SF != OF` | `a < b` | Signed
+`ae` | `nb` | `!CF` | `a >= b` | Unsigned
+`a` | `nbe` | `!CF` and `!ZF` | `a > b` | Unsigned
+`be` | `na` | `CF` or `ZF` | `a <= b` | Unsigned
+`b` | `nae` | `CF` | `a < b` | Unsigned
+
+Flag-based conditions:
+
+ CC | Flags
+:--:|:-----:
+ `z` | `ZF`
+ `c` | `CF`
+ `o` | `OF`
+ `s` | `SF`
+ `p` | `PF`
+ `nz` | `!ZF`
+ `nc` | `!CF`	
+ `no` | `!OF`
+ `ns` | `!SF`
+ `np` | `!PF`
