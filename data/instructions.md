@@ -224,17 +224,6 @@ Pop an address from the stack and `jmp` there.
 
 This instruction is usually used together with `call` to organize function calling.
 
-### `loop label`
-
-Equivalent to:
-```
-dec ecx
-jnz label
-```
-
-This instruction is usually used for implementing loops with post-condition where
-`ecx` is used as loop counter.
-
 ### `push a`
 
 Roughly equivalent to:
@@ -423,6 +412,17 @@ Eqivalent to:
 test ecx, ecx
 jz label
 ```
+
+### `loop label`
+
+Equivalent to:
+```
+dec ecx
+jnz label
+```
+
+This instruction is usually used for implementing loops with post-condition where
+`ecx` is used as loop counter.
 
 ### `setCC a`
 
