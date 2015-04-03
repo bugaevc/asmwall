@@ -126,10 +126,15 @@ be sure to convert registers (`ax` or `eax`) to appropriate types.
 
 `lea` calculates an `address` expression and writes it back to `a`.
 
-`address` is an expression formatted like this: `base + index * scale + displacement`.
-
-`base` is a register, `index` is any register except `esp`, `scale` is a number
+`address` is an expression formatted like this:
+`base + index * scale + displacement`. `base` is a register,
+`index` is any register except `esp`, `scale` is a number
 from {0, 1, 2, 4, 8}, `displacement` is an arithmetic expression.
+The order is not important, and it's even possible to put different
+parts of `displacement` to different places. While each
+of the three summands can be absent, it is not possible to use
+several summands of the same type (use several `lea` instructions
+in a row for that).
 
 Data Transfer and Size Conversion
 ==================================
