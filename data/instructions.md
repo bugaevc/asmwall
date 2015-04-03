@@ -86,7 +86,7 @@ Multiplier type | Operation performed
 
 `a` and `b` have to be of same type.
 
-`imul` multiplies signed numbers.
+This two-operand version of `imul` works both for signed and unsigned numbers.
 
 ### `imul a, b, c`
 
@@ -94,7 +94,7 @@ Multiplier type | Operation performed
 
 `c` has to be a constant, `a` and `b` have to be of same type.
 
-`imul` multiplies signed numbers.
+This three-operand version of `imul` works both for signed and unsigned numbers.
 
 ### `div a`
 
