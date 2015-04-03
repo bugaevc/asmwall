@@ -86,7 +86,7 @@ Multiplier type | Operation performed
 
 `a` and `b` have to be of same type.
 
-`imul` multiplies signed numbers.
+This two-operand version of `imul` works both for signed and unsigned numbers.
 
 ### `imul a, b, c`
 
@@ -94,7 +94,7 @@ Multiplier type | Operation performed
 
 `c` has to be a constant, `a` and `b` have to be of same type.
 
-`imul` multiplies signed numbers.
+This three-operand version of `imul` works both for signed and unsigned numbers.
 
 ### `div a`
 
@@ -126,10 +126,15 @@ be sure to convert registers (`ax` or `eax`) to appropriate types.
 
 `lea` calculates an `address` expression and writes it back to `a`.
 
-`address` is an expression formatted like this: `base + index * scale + displacement`.
-
-`base` is a register, `index` is any register except `esp`, `scale` is a number
+`address` is an expression formatted like this:
+`base + index * scale + displacement`. `base` is a register,
+`index` is any register except `esp`, `scale` is a number
 from {0, 1, 2, 4, 8}, `displacement` is an arithmetic expression.
+The order is not important, and it's even possible to put different
+parts of `displacement` to different places. While each
+of the three summands can be absent, it is not possible to use
+several summands of the same type (use several `lea` instructions
+in a row for that).
 
 Data Transfer and Size Conversion
 ==================================
@@ -224,17 +229,6 @@ Pop an address from the stack and `jmp` there.
 
 This instruction is usually used together with `call` to organize function calling.
 
-### `loop label`
-
-Equivalent to:
-```
-dec ecx
-jnz label
-```
-
-This instruction is usually used for implementing loops with post-condition where
-`ecx` is used as loop counter.
-
 ### `push a`
 
 Roughly equivalent to:
@@ -243,8 +237,9 @@ sub esp, sizeof(a)
 mov dword[esp], a
 ```
 
-This instruction pushes a value onto stack, decrementing stack pointer by dword.
-Unlike the code above, it can work with memory locations.
+This instruction pushes a value onto stack, decrementing stack pointer
+by its size. Unlike the code above, it can work with memory locations
+and does not affect flags.
 
 ### `pop a`
 
@@ -254,9 +249,10 @@ mov a, dword[esp]
 add esp, sizeof(a)
 ```
 
-This instruction pops a value from the stack, incrementing stack pointer by dword.
-Unlike the code above, it can work with memory locations. Note that the data is not
-erased or destroyed in any way.
+This instruction pushes a value onto stack, incrementing stack pointer
+by its size. Unlike the code above, it can work with memory locations
+and does not affect flags. Note that the data is not erased or destroyed
+in any way.
 
 *Note:* to pop a value without storing it, use `add esp, sizeof(a)`.
 
@@ -273,7 +269,7 @@ function or a procedure.
 
 ### `pushad`
 
-Equivalent to:
+Roughly equivalent to:
 ```
 mov dword[esp +  4], eax
 mov dword[esp +  8], ecx
@@ -286,11 +282,12 @@ mov dword[esp + 32], edi
 sub esp, 32
 ```
 
-This instruction pushes nearly all registers to the stack.
+This instruction pushes nearly all registers to the stack. Unlike
+the code above it does not affect flags.
 
 ### `popad`
 
-Equivalent to:
+Roughly equivalent to:
 ```
 add esp, 32
 mov eax, dword[esp +  4]
@@ -303,7 +300,8 @@ mov esi, dword[esp + 28]
 mov edi, dword[esp + 32]
 ```
 
-This instruction pops nearly all registers from the stack.
+This instruction pops nearly all registers from the stack. Unlike
+the code above it does not affect flags.
 
 Bitwise Operations
 ==================
@@ -382,7 +380,7 @@ Conditionals
 
 Perform `jmp label` if the condition holds true.
 
-Some instructions are only flag-based and some make sense if executed after `cmp` instruction.
+Some conditions are only flag-based and some make sense if executed after `cmp` instruction.
 
 The following table specifies possible meanings of using conditional jumps
 after `cmp a, b` instruction:
@@ -400,7 +398,7 @@ after `cmp a, b` instruction:
 `be` | `na` | `CF` or `ZF` | `a <= b` | Unsigned
 `b` | `nae` | `CF` | `a < b` | Unsigned
 
-Flag-based instructions:
+Flag-based conditions:
 
  CC | Flags
 :--:|:-----:
@@ -424,6 +422,17 @@ test ecx, ecx
 jz label
 ```
 
+### `loop label`
+
+Equivalent to:
+```
+dec ecx
+jnz label
+```
+
+This instruction is usually used for implementing loops with post-condition where
+`ecx` is used as loop counter.
+
 ### `setCC a`
 
 `a = CC ? 1 : 0`
@@ -432,8 +441,74 @@ jz label
 
 This instruction sets `a` to `1` if the condition holds true and to zero otherwise.
 
+Some conditions are only flag-based and some make sense if executed after `cmp` instruction.
+
+The following table specifies possible meanings of using conditional jumps
+after `cmp a, b` instruction:
+
+ CC | Alternative CC | Flags | Meaning | Signity
+:--:|:--------------:|:----- |:-------:|:-------:
+`e` | `z` | `ZF` | `a == b` | Both
+`ne` | `nz` | `!ZF` | `a != b` | Both
+`ge` | `nl` | `SF == OF` | `a >= b` | Signed
+`g` | `nle` | `SF == OF` and `!ZF` | `a > b` | Signed
+`le` | `ng` | `SF != OF` or `ZF` | `a <= b` | Signed
+`l` | `nge` | `SF != OF` | `a < b` | Signed
+`ae` | `nb` | `!CF` | `a >= b` | Unsigned
+`a` | `nbe` | `!CF` and `!ZF` | `a > b` | Unsigned
+`be` | `na` | `CF` or `ZF` | `a <= b` | Unsigned
+`b` | `nae` | `CF` | `a < b` | Unsigned
+
+Flag-based conditions:
+
+ CC | Flags
+:--:|:-----:
+ `z` | `ZF`
+ `c` | `CF`
+ `o` | `OF`
+ `s` | `SF`
+ `p` | `PF`
+ `nz` | `!ZF`
+ `nc` | `!CF`	
+ `no` | `!OF`
+ `ns` | `!SF`
+ `np` | `!PF`
+
 ### `cmovCC a, b`
 
 Perform `mov a, b` if the condition holds true.
 
 `a` and `b` both have to be registers.
+
+Some conditions are only flag-based and some make sense if executed after `cmp` instruction.
+
+The following table specifies possible meanings of using conditional jumps
+after `cmp a, b` instruction:
+
+ CC | Alternative CC | Flags | Meaning | Signity
+:--:|:--------------:|:----- |:-------:|:-------:
+`e` | `z` | `ZF` | `a == b` | Both
+`ne` | `nz` | `!ZF` | `a != b` | Both
+`ge` | `nl` | `SF == OF` | `a >= b` | Signed
+`g` | `nle` | `SF == OF` and `!ZF` | `a > b` | Signed
+`le` | `ng` | `SF != OF` or `ZF` | `a <= b` | Signed
+`l` | `nge` | `SF != OF` | `a < b` | Signed
+`ae` | `nb` | `!CF` | `a >= b` | Unsigned
+`a` | `nbe` | `!CF` and `!ZF` | `a > b` | Unsigned
+`be` | `na` | `CF` or `ZF` | `a <= b` | Unsigned
+`b` | `nae` | `CF` | `a < b` | Unsigned
+
+Flag-based conditions:
+
+ CC | Flags
+:--:|:-----:
+ `z` | `ZF`
+ `c` | `CF`
+ `o` | `OF`
+ `s` | `SF`
+ `p` | `PF`
+ `nz` | `!ZF`
+ `nc` | `!CF`	
+ `no` | `!OF`
+ `ns` | `!SF`
+ `np` | `!PF`
