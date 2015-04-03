@@ -380,7 +380,7 @@ Conditionals
 
 Perform `jmp label` if the condition holds true.
 
-Some instructions are only flag-based and some make sense if executed after `cmp` instruction.
+Some conditions are only flag-based and some make sense if executed after `cmp` instruction.
 
 The following table specifies possible meanings of using conditional jumps
 after `cmp a, b` instruction:
@@ -398,7 +398,7 @@ after `cmp a, b` instruction:
 `be` | `na` | `CF` or `ZF` | `a <= b` | Unsigned
 `b` | `nae` | `CF` | `a < b` | Unsigned
 
-Flag-based instructions:
+Flag-based conditions:
 
  CC | Flags
 :--:|:-----:
