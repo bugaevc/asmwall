@@ -237,8 +237,9 @@ sub esp, sizeof(a)
 mov dword[esp], a
 ```
 
-This instruction pushes a value onto stack, decrementing stack pointer by dword.
-Unlike the code above, it can work with memory locations.
+This instruction pushes a value onto stack, decrementing stack pointer
+by its size. Unlike the code above, it can work with memory locations
+and does not affect flags.
 
 ### `pop a`
 
@@ -248,9 +249,10 @@ mov a, dword[esp]
 add esp, sizeof(a)
 ```
 
-This instruction pops a value from the stack, incrementing stack pointer by dword.
-Unlike the code above, it can work with memory locations. Note that the data is not
-erased or destroyed in any way.
+This instruction pushes a value onto stack, incrementing stack pointer
+by its size. Unlike the code above, it can work with memory locations
+and does not affect flags. Note that the data is not erased or destroyed
+in any way.
 
 *Note:* to pop a value without storing it, use `add esp, sizeof(a)`.
 
@@ -267,7 +269,7 @@ function or a procedure.
 
 ### `pushad`
 
-Equivalent to:
+Roughly equivalent to:
 ```
 mov dword[esp +  4], eax
 mov dword[esp +  8], ecx
@@ -280,11 +282,12 @@ mov dword[esp + 32], edi
 sub esp, 32
 ```
 
-This instruction pushes nearly all registers to the stack.
+This instruction pushes nearly all registers to the stack. Unlike
+the code above it does not affect flags.
 
 ### `popad`
 
-Equivalent to:
+Roughly equivalent to:
 ```
 add esp, 32
 mov eax, dword[esp +  4]
@@ -297,7 +300,8 @@ mov esi, dword[esp + 28]
 mov edi, dword[esp + 32]
 ```
 
-This instruction pops nearly all registers from the stack.
+This instruction pops nearly all registers from the stack. Unlike
+the code above it does not affect flags.
 
 Bitwise Operations
 ==================
