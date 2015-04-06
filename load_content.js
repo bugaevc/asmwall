@@ -65,7 +65,7 @@ $(document).ready(function() {
                     content = $.trim(content);
                     if(showAll)
                         addItem(content, level);
-                    else if(level === 3)
+                    else
                         isCurrent = (command === content);
                 }
                 if(!showAll && isCurrent)
