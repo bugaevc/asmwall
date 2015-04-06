@@ -1,5 +1,4 @@
-Addition and Subtraction
-========================
+## Addition and Subtraction
 
 ### `add a, b`
 
@@ -57,8 +56,7 @@ sub eax, ecx
 sbb edx, ebx
 ```
 
-Multiplication and Division
-===========================
+## Multiplication and Division
 
 ### `mul a`
 
@@ -136,8 +134,8 @@ of the three summands can be absent, it is not possible to use
 several summands of the same type (use several `lea` instructions
 in a row for that).
 
-Data Transfer and Size Conversion
-==================================
+
+## Data Transfer and Size Conversion
 
 ### `mov a, b`
 
@@ -209,8 +207,7 @@ Equivalent to:
 movsx eax, ax
 ```
 
-Execution Control and Stack Management
-======================================
+## Execution Control and Stack Management
 
 ### `jmp label`
 
@@ -303,8 +300,7 @@ mov edi, dword[esp + 32]
 This instruction pops nearly all registers from the stack. Unlike
 the code above it does not affect flags.
 
-Bitwise Operations
-==================
+## Bitwise Operations
 
 ### `and a, b`
 
@@ -373,8 +369,7 @@ filled with zeroes.
 `CF` flag is set to the last bit that was shifted out. All the shifted in bits are
 filled with the sign bit of `a`.
 
-Conditionals
-============
+## Conditionals
 
 ### `jCC label`
 
