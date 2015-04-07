@@ -14,20 +14,43 @@ $(document).ready(function() {
         $in.addClass("instructions");
         var $list = undefined;
     }
-    $.get("data/instructions.md", function(data) {
+    function addItem(text, level) {
+        switch(level) {
+            case 1:
+                $("<h2></h2>")
+                    .text(text)
+                    .appendTo($in);
+                break;
+
+            case 2:
+                $list = $("<ul></ul>")
+                $("<h3></h3>")
+                    .text(text)
+                    .appendTo($in)
+                    .after($list);
+                break;
+
+            case 3:
+                var $a = $("<a></a>")
+                    .addClass("block-link");
+                var href = '?' + text.replace(/ /g, '_');
+                $a
+                    .attr("href", href)
+                    .text(text);
+                $('<li></li>')
+                    .append($a)
+                    .appendTo($list);
+                break;
+        }
+    }
+    $.get("data.md", function(data) {
             var arr = data.split("\n");
             for(var i = 0; i < arr.length; i++)
             {
                 arr[i] = $.trim(arr[i]);
                 if(arr[i][0] === '=')
                     if(showAll)
-                    {
-                        $list = $("<ul></ul>")
-                        $("<h2></h2>")
-                            .text(arr[i-1])
-                            .appendTo($in)
-                            .after($list);
-                    }
+                        addItem(arr[i-1], 1);
                     else if(isCurrent)
                     {
                         isCurrent = false;
@@ -37,20 +60,11 @@ $(document).ready(function() {
                     }
                 if(arr[i][0] === '#')
                 {
+                    var level = arr[i].indexOf(' ');
                     var content = arr[i].replace(/#/g, '').replace(/`/g, '');
                     content = $.trim(content);
                     if(showAll)
-                    {
-                        var $a = $("<a></a>")
-				.addClass("block-link");
-                        var href = '?' + content.replace(/ /g, '_');
-                        $a
-                            .attr("href", href)
-                            .text(content);
-                        $('<li></li>')
-                            .append($a)
-                            .appendTo($list);
-                    }
+                        addItem(content, level);
                     else
                         isCurrent = (command === content);
                 }
