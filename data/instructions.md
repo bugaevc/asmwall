@@ -249,7 +249,7 @@ mov a, dword[esp]
 add esp, sizeof(a)
 ```
 
-This instruction pushes a value onto stack, incrementing stack pointer
+This instruction pops a value from stack, incrementing stack pointer
 by its size. Unlike the code above, it can work with memory locations
 and does not affect flags. Note that the data is not erased or destroyed
 in any way.
