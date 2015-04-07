@@ -43,7 +43,7 @@ $(document).ready(function() {
                 break;
         }
     }
-    $.get("data/instructions.md", function(data) {
+    $.get("data.md", function(data) {
             var arr = data.split("\n");
             for(var i = 0; i < arr.length; i++)
             {
