@@ -520,6 +520,10 @@ Calling Conventions
 cdecl is a calling convention used by many C compilers.
 
 Arguments are passed on the stack, in reverse order (the first argument goes last).
+It is the caller who should clean the stack from arguments after the call. It can,
+however, keep them if it needs them for some reason like making another function call
+with the same or similar set of arguments.
+
 The values of registers `eax`, `ecx` and `edx` ("caller-saved" registers) can be
 changed by the callee while values of all the other registers ("callee-saved" registers,
 including `ebp`) must be preserved. This is usually accomplished by pushing their
