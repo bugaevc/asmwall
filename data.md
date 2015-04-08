@@ -510,3 +510,98 @@ CC | Flags
 `no` | `!OF`
 `ns` | `!SF`
 `np` | `!PF`
+
+
+Calling Conventions
+===================
+
+### cdecl
+
+cdecl is a calling convention used by many C compilers.
+
+Arguments are passed on the stack, in reverse order (the first argument goes last).
+The values of registers `eax`, `ecx` and `edx` ("caller-saved" registers) can be
+changed by the callee while values of all the other registers ("callee-saved" registers,
+including `ebp`) must be preserved. This is usually accomplished by pushing their
+initial values on stack in the very start of the callee execution and poping them
+back in the end.
+
+The register `ebp` is commonly used as a pointer to the start of the current function's
+frame (frame pointer), i.e., the part of the stack being used and controlled by the
+current function. This allows arguments and local variables to have constant (relative to `ebp`)
+addresses no matter how many items has been pushed onto the stack afterwards. Functions
+usually start their execution by saving previous `ebp` value onto the stack, than resetting
+it to point to the just-saved value, and then pushing all the other registers on top of it.
+
+As an optimization (especially for small functions) it is possible to omit saving and restoring
+`ebp` and always reference the stack relative to `esp`.
+
+To return a value that fits into a dword, function should leave it in `eax` before exiting.
+Data types that require up to 8 bytes of memory can be returned in `edx:eax`, while longer
+values should be returned "in memory".
+
+The following image shows a typical stack structure during a call of a function that accepts
+two arguments:
+
+![cdecl stack structure](cdecl_stack.svg)
+
+The following example demonstrates the use of the frame pointer to access arguments
+and the idea of storing values of registers on the stack to preserve them:
+
+```
+; for two vectors (x1, y1) and (x2, y2),
+; calculate (x1*x2 + y1*y2) / 2
+scalar_product:
+    push ebp
+    mov ebp, esp
+    push ebx
+
+    mov eax, dword[ebp+8] ; load x1 into eax
+    cdq
+    imul dword[ebp+16] ; multiply by x2
+
+    mov ebx, eax
+    mov ecx, edx ; store the values
+
+    mov eax, dword[ebp+12] ; load y1 into eax
+    cdq
+    imul dword[ebp+20] ; multiply by y2
+
+    add eax, ebx
+    adc edx, ecx
+
+    rcr edx, 1
+    rcr eax, 1 ; divide by 2 preserving the sign
+
+    pop ebx
+    leave
+    ret
+```
+
+This function is called like that:
+```
+push 3
+push -1
+push 8
+push 26
+call scalar_product ; (26, 8) * (-1, 3)
+add esp, 4*4 ; clean up the stack
+; result in eax
+```
+
+A simpler version of this function which deals with small numbers can
+avoid using frame pointer:
+
+```
+scalar_product:
+    mov eax, dword[esp+4] ; load load x1 into eax
+    imul eax, dword[esp+12] ; multiply by x2
+    mov ecx, dword[esp+12] ; load y1 into ecx
+    imul ecx, dword[esp+20] ; multiply by y2
+    add eax, ecx
+    sar eax, 1
+    ret
+```
+
+Note that this function should be called in the exact same way, since the
+optimization only changes function's internal behaviour, not its "public interface".
