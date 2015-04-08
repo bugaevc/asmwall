@@ -12,19 +12,17 @@ $(document).ready(function() {
     else
     {
         $in.addClass("instructions");
-        var $list = undefined;
+        var $list = $("<ul></ul>");
     }
     function addItem(text, level) {
         switch(level) {
             case 1:
-                $("<h2></h2>")
-                    .text(text)
-                    .appendTo($in);
-                break;
-
             case 2:
-                $list = $("<ul></ul>")
-                $("<h3></h3>")
+                if($list.filter(":empty").length === 0)
+                    $list = $("<ul></ul>");
+                var headerTag = '<h' + (level+1) + '>' +
+                                '</h' + (level+1) + '>';
+                $(headerTag)
                     .text(text)
                     .appendTo($in)
                     .after($list);
