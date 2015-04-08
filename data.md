@@ -383,7 +383,7 @@ Some conditions are only flag-based and some make sense if executed after `cmp` 
 The following table specifies possible meanings of using conditional jumps
 after `cmp a, b` instruction:
 
- CC | Alternative CC | Flags | Meaning | Signity
+CC | Alternative CC | Flags | Meaning | Signity
 :--:|:--------------:|:----- |:-------:|:-------:
 `e` | `z` | `ZF` | `a == b` | Both
 `ne` | `nz` | `!ZF` | `a != b` | Both
@@ -398,18 +398,18 @@ after `cmp a, b` instruction:
 
 Flag-based conditions:
 
- CC | Flags
+CC | Flags
 :--:|:-----:
- `z` | `ZF`
- `c` | `CF`
- `o` | `OF`
- `s` | `SF`
- `p` | `PF`
- `nz` | `!ZF`
- `nc` | `!CF`	
- `no` | `!OF`
- `ns` | `!SF`
- `np` | `!PF`
+`z` | `ZF`
+`c` | `CF`
+`o` | `OF`
+`s` | `SF`
+`p` | `PF`
+`nz` | `!ZF`
+`nc` | `!CF`	
+`no` | `!OF`
+`ns` | `!SF`
+`np` | `!PF`
 
 ### `jecxz label`
 
@@ -444,7 +444,7 @@ Some conditions are only flag-based and some make sense if executed after `cmp` 
 The following table specifies possible meanings of using conditional jumps
 after `cmp a, b` instruction:
 
- CC | Alternative CC | Flags | Meaning | Signity
+CC | Alternative CC | Flags | Meaning | Signity
 :--:|:--------------:|:----- |:-------:|:-------:
 `e` | `z` | `ZF` | `a == b` | Both
 `ne` | `nz` | `!ZF` | `a != b` | Both
@@ -459,18 +459,18 @@ after `cmp a, b` instruction:
 
 Flag-based conditions:
 
- CC | Flags
+CC | Flags
 :--:|:-----:
- `z` | `ZF`
- `c` | `CF`
- `o` | `OF`
- `s` | `SF`
- `p` | `PF`
- `nz` | `!ZF`
- `nc` | `!CF`	
- `no` | `!OF`
- `ns` | `!SF`
- `np` | `!PF`
+`z` | `ZF`
+`c` | `CF`
+`o` | `OF`
+`s` | `SF`
+`p` | `PF`
+`nz` | `!ZF`
+`nc` | `!CF`	
+`no` | `!OF`
+`ns` | `!SF`
+`np` | `!PF`
 
 ### `cmovCC a, b`
 
@@ -483,7 +483,7 @@ Some conditions are only flag-based and some make sense if executed after `cmp` 
 The following table specifies possible meanings of using conditional jumps
 after `cmp a, b` instruction:
 
- CC | Alternative CC | Flags | Meaning | Signity
+CC | Alternative CC | Flags | Meaning | Signity
 :--:|:--------------:|:----- |:-------:|:-------:
 `e` | `z` | `ZF` | `a == b` | Both
 `ne` | `nz` | `!ZF` | `a != b` | Both
@@ -498,15 +498,15 @@ after `cmp a, b` instruction:
 
 Flag-based conditions:
 
- CC | Flags
+CC | Flags
 :--:|:-----:
- `z` | `ZF`
- `c` | `CF`
- `o` | `OF`
- `s` | `SF`
- `p` | `PF`
- `nz` | `!ZF`
- `nc` | `!CF`	
- `no` | `!OF`
- `ns` | `!SF`
- `np` | `!PF`
+`z` | `ZF`
+`c` | `CF`
+`o` | `OF`
+`s` | `SF`
+`p` | `PF`
+`nz` | `!ZF`
+`nc` | `!CF`	
+`no` | `!OF`
+`ns` | `!SF`
+`np` | `!PF`
