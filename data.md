@@ -605,3 +605,9 @@ scalar_product:
 
 Note that this function should be called in the exact same way, since the
 optimization only changes function's internal behaviour, not its "public interface".
+
+### fastcall
+
+The fastcall convention is very similar to cdecl, the difference being that the first two
+function arguments are not pushed onto the stack, but passed in `ecx` and `edx` registers,
+respectively. This allows simple functions to be shorter and operate faster.
