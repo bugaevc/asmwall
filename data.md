@@ -383,7 +383,7 @@ Some conditions are only flag-based and some make sense if executed after `cmp` 
 The following table specifies possible meanings of using conditional jumps
 after `cmp a, b` instruction:
 
-CC | Alternative CC | Flags | Meaning | Signity
+CC | Alt CC | Flags | Meaning | Signity
 :--:|:--------------:|:----- |:-------:|:-------:
 `e` | `z` | `ZF` | `a == b` | Both
 `ne` | `nz` | `!ZF` | `a != b` | Both
@@ -444,7 +444,7 @@ Some conditions are only flag-based and some make sense if executed after `cmp` 
 The following table specifies possible meanings of using conditional jumps
 after `cmp a, b` instruction:
 
-CC | Alternative CC | Flags | Meaning | Signity
+CC | Alt CC | Flags | Meaning | Signity
 :--:|:--------------:|:----- |:-------:|:-------:
 `e` | `z` | `ZF` | `a == b` | Both
 `ne` | `nz` | `!ZF` | `a != b` | Both
@@ -483,7 +483,7 @@ Some conditions are only flag-based and some make sense if executed after `cmp` 
 The following table specifies possible meanings of using conditional jumps
 after `cmp a, b` instruction:
 
-CC | Alternative CC | Flags | Meaning | Signity
+CC | Alt CC | Flags | Meaning | Signity
 :--:|:--------------:|:----- |:-------:|:-------:
 `e` | `z` | `ZF` | `a == b` | Both
 `ne` | `nz` | `!ZF` | `a != b` | Both
