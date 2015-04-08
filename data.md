@@ -271,14 +271,14 @@ function or a procedure.
 
 Roughly equivalent to:
 ```
-mov dword[esp +  4], eax
-mov dword[esp +  8], ecx
-mov dword[esp + 12], edx
-mov dword[esp + 16], ebx
-mov dword[esp + 20], esp
-mov dword[esp + 24], ebp
-mov dword[esp + 28], esi
-mov dword[esp + 32], edi
+mov dword[esp -  4], eax
+mov dword[esp -  8], ecx
+mov dword[esp - 12], edx
+mov dword[esp - 16], ebx
+mov dword[esp - 20], esp
+mov dword[esp - 24], ebp
+mov dword[esp - 28], esi
+mov dword[esp - 32], edi
 sub esp, 32
 ```
 
@@ -290,14 +290,14 @@ the code above it does not affect flags.
 Roughly equivalent to:
 ```
 add esp, 32
-mov eax, dword[esp +  4]
-mov ecx, dword[esp +  8]
-mov edx, dword[esp + 12]
-mov ebx, dword[esp + 16]
-; do not mov esp, dword[esp + 20]
-mov ebp, dword[esp + 24]
-mov esi, dword[esp + 28]
-mov edi, dword[esp + 32]
+mov eax, dword[esp -  4]
+mov ecx, dword[esp -  8]
+mov edx, dword[esp - 12]
+mov ebx, dword[esp - 16]
+; do not mov esp, dword[esp - 20]
+mov ebp, dword[esp - 24]
+mov esi, dword[esp - 28]
+mov edi, dword[esp - 32]
 ```
 
 This instruction pops nearly all registers from the stack. Unlike
