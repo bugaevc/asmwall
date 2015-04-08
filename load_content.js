@@ -45,7 +45,6 @@ $(document).ready(function() {
             var arr = data.split("\n");
             for(var i = 0; i < arr.length; i++)
             {
-                arr[i] = $.trim(arr[i]);
                 if(arr[i][0] === '=')
                     if(showAll)
                         addItem(arr[i-1], 1);
