@@ -532,15 +532,15 @@ back in the end.
 
 The register `ebp` is commonly used as a pointer to the start of the current function's
 frame (frame pointer), i.e., the part of the stack being used and controlled by the
-current function. This allows arguments and local variables to have constant (relative to `ebp`)
-addresses no matter how many items has been pushed onto the stack afterwards. Functions
-usually start their execution by saving previous `ebp` value onto the stack, than resetting
+current function. This allows for arguments and local variables to have constant (relative to `ebp`)
+addresses regardless of number of items pushed onto the stack. Functions
+usually start their execution by saving `ebp` value onto the stack, then resetting
 it to point to the just-saved value, and then pushing all the other registers on top of it.
 
-As an optimization (especially for small functions) it is possible to omit saving and restoring
-`ebp` and always reference the stack relative to `esp`.
+As an optimization (especially for small functions) it is allowed to omit saving and restoring
+`ebp` and reference the stack relative to `esp`.
 
-To return a value that fits into a dword, function should leave it in `eax` before exiting.
+To return a value that fits into a `dword`, function should leave it in `eax` before exiting.
 Data types that require up to 8 bytes of memory can be returned in `edx:eax`, while longer
 values should be returned "in memory".
 
@@ -553,7 +553,7 @@ The following example demonstrates the use of the frame pointer to access argume
 and the idea of storing values of registers on the stack to preserve them:
 
 ```
-; for two vectors (x1, y1) and (x2, y2),
+; for two vectors (x1, y1) and (x2, y2)
 ; calculate (x1*x2 + y1*y2) / 2
 scalar_product:
     push ebp
@@ -600,8 +600,8 @@ scalar_product:
     imul eax, dword[esp+12] ; multiply by x2
     mov ecx, dword[esp+12] ; load y1 into ecx
     imul ecx, dword[esp+20] ; multiply by y2
-    add eax, ecx
-    sar eax, 1
+    add eax, ecx ; add x1*x2 to y1*y2
+    sar eax, 1 ; divide the result by 2
     ret
 ```
 
@@ -610,6 +610,6 @@ optimization only changes function's internal behaviour, not its "public interfa
 
 ### fastcall
 
-The fastcall convention is very similar to cdecl, the difference being that the first two
+The fastcall convention is very similar to cdecl. The difference is that the first two
 function arguments are not pushed onto the stack, but passed in `ecx` and `edx` registers,
-respectively. This allows simple functions to be shorter and operate faster.
+respectively. This allows for simple functions to be shorter and operate faster.
