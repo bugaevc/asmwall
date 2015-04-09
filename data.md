@@ -561,14 +561,12 @@ scalar_product:
     push ebx
 
     mov eax, dword[ebp+8] ; load x1 into eax
-    cdq
     imul dword[ebp+16] ; multiply by x2
 
     mov ebx, eax
     mov ecx, edx ; store the values
 
     mov eax, dword[ebp+12] ; load y1 into eax
-    cdq
     imul dword[ebp+20] ; multiply by y2
 
     add eax, ebx
