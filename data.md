@@ -176,7 +176,7 @@ of `a`, which denotes the sign for signed numbers.
 Equivalent to:
 ```
 mov edx, eax
-shr edx, 31
+sar edx, 31
 ```
 
 This instruction is generally used to convert dwords to qwords before performing
@@ -187,7 +187,7 @@ signed division.
 Equivalent to:
 ```
 mov dx, ax
-shr dx, 15
+sar dx, 15
 ```
 
 This instruction is generally used to convert words to dwords before performing
