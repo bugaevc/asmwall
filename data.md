@@ -406,7 +406,7 @@ CC | Flags
 `s` | `SF`
 `p` | `PF`
 `nz` | `!ZF`
-`nc` | `!CF`	
+`nc` | `!CF`
 `no` | `!OF`
 `ns` | `!SF`
 `np` | `!PF`
@@ -467,7 +467,7 @@ CC | Flags
 `s` | `SF`
 `p` | `PF`
 `nz` | `!ZF`
-`nc` | `!CF`	
+`nc` | `!CF`
 `no` | `!OF`
 `ns` | `!SF`
 `np` | `!PF`
@@ -506,7 +506,7 @@ CC | Flags
 `s` | `SF`
 `p` | `PF`
 `nz` | `!ZF`
-`nc` | `!CF`	
+`nc` | `!CF`
 `no` | `!OF`
 `ns` | `!SF`
 `np` | `!PF`
