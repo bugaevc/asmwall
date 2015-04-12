@@ -613,3 +613,27 @@ optimization only changes function's internal behaviour, not its "public interfa
 The fastcall convention is very similar to cdecl. The difference is that the first two
 function arguments are not pushed onto the stack, but passed in `ecx` and `edx` registers,
 respectively. This allows for simple functions to be shorter and operate faster.
+
+For example, this is the function that subtracts two numbers:
+
+```
+diff:
+    mov eax, ecx
+    sub eax, edx
+    ret
+```
+
+### stdcall
+
+The stdcall convention is very similar to cdecl. The difference is that the callee is
+responsible for cleaning up the stack, i.e. removing arguments. That leads to shorter
+code, as with cdecl stack cleanup is performed everywhere a function is called.
+
+For example, this is the function that subtracts two numbers:
+
+```
+diff:
+    mov eax, dword[esp+4]
+    sub eax, dword[esp+8]
+    ret 8
+```
