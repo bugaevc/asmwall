@@ -383,18 +383,18 @@ Some conditions are only flag-based and some make sense if executed after `cmp` 
 The following table specifies possible meanings of using conditional jumps
 after `cmp a, b` instruction:
 
-CC | Alt CC | Flags | Meaning | Signity
-:--:|:--------------:|:----- |:-------:|:-------:
-`e` | `z` | `ZF` | `a == b` | Both
-`ne` | `nz` | `!ZF` | `a != b` | Both
-`ge` | `nl` | `SF == OF` | `a >= b` | Signed
-`g` | `nle` | `SF == OF` and `!ZF` | `a > b` | Signed
-`le` | `ng` | `SF != OF` or `ZF` | `a <= b` | Signed
-`l` | `nge` | `SF != OF` | `a < b` | Signed
-`ae` | `nb` | `!CF` | `a >= b` | Unsigned
-`a` | `nbe` | `!CF` and `!ZF` | `a > b` | Unsigned
-`be` | `na` | `CF` or `ZF` | `a <= b` | Unsigned
-`b` | `nae` | `CF` | `a < b` | Unsigned
+CC | Alt CC | Meaning | Signity | Flags
+:-:|:------:|:-------:|:-------:|:-----
+`e`  | `z`  | `a == b` | Both | `ZF`
+`ne` | `nz` | `a != b` | Both | `!ZF`
+`ge` | `nl` | `a >= b` | Signed | `SF == OF`
+`g` | `nle` | `a > b` | Signed | `SF == OF` and `!ZF`
+`le` | `ng` | `a <= b` | Signed | `SF != OF` or `ZF`
+`l` | `nge` | `a < b` | Signed | `SF != OF`
+`ae` | `nb` | `a >= b` | Unsigned | `!CF`
+`a` | `nbe` | `a > b` | Unsigned | `!CF` and `!ZF`
+`be` | `na` | `a <= b` | Unsigned | `CF` or `ZF`
+`b` | `nae` | `a < b` | Unsigned | `CF`
 
 Flag-based conditions:
 
@@ -444,18 +444,18 @@ Some conditions are only flag-based and some make sense if executed after `cmp` 
 The following table specifies possible meanings of using conditional jumps
 after `cmp a, b` instruction:
 
-CC | Alt CC | Flags | Meaning | Signity
-:--:|:--------------:|:----- |:-------:|:-------:
-`e` | `z` | `ZF` | `a == b` | Both
-`ne` | `nz` | `!ZF` | `a != b` | Both
-`ge` | `nl` | `SF == OF` | `a >= b` | Signed
-`g` | `nle` | `SF == OF` and `!ZF` | `a > b` | Signed
-`le` | `ng` | `SF != OF` or `ZF` | `a <= b` | Signed
-`l` | `nge` | `SF != OF` | `a < b` | Signed
-`ae` | `nb` | `!CF` | `a >= b` | Unsigned
-`a` | `nbe` | `!CF` and `!ZF` | `a > b` | Unsigned
-`be` | `na` | `CF` or `ZF` | `a <= b` | Unsigned
-`b` | `nae` | `CF` | `a < b` | Unsigned
+CC | Alt CC | Meaning | Signity | Flags
+:-:|:------:|:-------:|:-------:|:-----
+`e`  | `z`  | `a == b` | Both | `ZF`
+`ne` | `nz` | `a != b` | Both | `!ZF`
+`ge` | `nl` | `a >= b` | Signed | `SF == OF`
+`g` | `nle` | `a > b` | Signed | `SF == OF` and `!ZF`
+`le` | `ng` | `a <= b` | Signed | `SF != OF` or `ZF`
+`l` | `nge` | `a < b` | Signed | `SF != OF`
+`ae` | `nb` | `a >= b` | Unsigned | `!CF`
+`a` | `nbe` | `a > b` | Unsigned | `!CF` and `!ZF`
+`be` | `na` | `a <= b` | Unsigned | `CF` or `ZF`
+`b` | `nae` | `a < b` | Unsigned | `CF`
 
 Flag-based conditions:
 
@@ -483,18 +483,18 @@ Some conditions are only flag-based and some make sense if executed after `cmp` 
 The following table specifies possible meanings of using conditional jumps
 after `cmp a, b` instruction:
 
-CC | Alt CC | Flags | Meaning | Signity
-:--:|:--------------:|:----- |:-------:|:-------:
-`e` | `z` | `ZF` | `a == b` | Both
-`ne` | `nz` | `!ZF` | `a != b` | Both
-`ge` | `nl` | `SF == OF` | `a >= b` | Signed
-`g` | `nle` | `SF == OF` and `!ZF` | `a > b` | Signed
-`le` | `ng` | `SF != OF` or `ZF` | `a <= b` | Signed
-`l` | `nge` | `SF != OF` | `a < b` | Signed
-`ae` | `nb` | `!CF` | `a >= b` | Unsigned
-`a` | `nbe` | `!CF` and `!ZF` | `a > b` | Unsigned
-`be` | `na` | `CF` or `ZF` | `a <= b` | Unsigned
-`b` | `nae` | `CF` | `a < b` | Unsigned
+CC | Alt CC | Meaning | Signity | Flags
+:-:|:------:|:-------:|:-------:|:-----
+`e`  | `z`  | `a == b` | Both | `ZF`
+`ne` | `nz` | `a != b` | Both | `!ZF`
+`ge` | `nl` | `a >= b` | Signed | `SF == OF`
+`g` | `nle` | `a > b` | Signed | `SF == OF` and `!ZF`
+`le` | `ng` | `a <= b` | Signed | `SF != OF` or `ZF`
+`l` | `nge` | `a < b` | Signed | `SF != OF`
+`ae` | `nb` | `a >= b` | Unsigned | `!CF`
+`a` | `nbe` | `a > b` | Unsigned | `!CF` and `!ZF`
+`be` | `na` | `a <= b` | Unsigned | `CF` or `ZF`
+`b` | `nae` | `a < b` | Unsigned | `CF`
 
 Flag-based conditions:
 
