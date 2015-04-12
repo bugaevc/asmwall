@@ -615,6 +615,11 @@ scalar_product:
 Note that this function should be called in the exact same way, since the
 optimization only changes function's internal behaviour, not its "public interface".
 
+In the case of "in memory return" the caller should allocate the required amount of memory
+and push a pointer to it onto the stack after all the arguments. The callee then should
+leave its return value in that memory. The callee is also required to pop the pointer from
+the stack, which is usually done with `ret 4`.
+
 ### fastcall
 
 The fastcall convention is very similar to cdecl. The difference is that the first two
