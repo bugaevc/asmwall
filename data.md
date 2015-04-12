@@ -229,6 +229,13 @@ Pop an address from the stack and `jmp` there.
 
 This instruction is usually used together with `call` to organize function calling.
 
+### `ret size`
+
+Pop an address from the stack and `jmp` there, then `add esp, size`.
+
+This instruction is usually used together with `call` to organize function calling
+in cases where the callee is responsible for stack cleanup.
+
 ### `push a`
 
 Roughly equivalent to:
