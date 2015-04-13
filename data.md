@@ -441,7 +441,7 @@ CC | Flags
 
 ### `jecxz label`
 
-Eqivalent to:
+Equivalent to:
 
 ```
 test ecx, ecx
