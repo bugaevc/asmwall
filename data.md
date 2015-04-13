@@ -210,6 +210,27 @@ Equivalent to:
 movsx eax, ax
 ```
 
+
+## Comparison and Testing
+
+### `cmp a, b`
+
+This instruction is mostly the same as `sub a, b`, except it doesn't change `a`.
+Since it sets flags just as `sub a, b` would, it is commonly used to compare two
+numbers, either signed or unsigned.
+
+`a` and `b` can't both be memory.
+
+### `test a, b`
+
+This instruction is mostly the same as `and a, b`, except it doesn't change `a`.
+Since it sets flags just as `and a, b` would, it is commonly used to check if a
+number has a specific bit pattern. Another possible use is to test number by itself
+(`test a, a`) to check if it equals zero.
+
+`a` and `b` can't both be memory.
+
+
 ## Execution Control and Stack Management
 
 ### `jmp label`
