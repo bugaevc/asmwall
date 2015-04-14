@@ -729,6 +729,14 @@ Pops the value from the top of the FP-stack to `a`.
 
 `ST1 = ST0 - ST1` and remove `ST0` from the FP-stack.
 
+### `fabs`
+
+`ST0 = abs(ST0)`
+
+### `fchs`
+
+`ST0 = -ST0`
+
 ## Multiplication and Division
 
 ### `fmul`
