@@ -568,9 +568,12 @@ it to point to the just-saved value, and then pushing all the other registers on
 As an optimization (especially for small functions) it is allowed to omit saving and restoring
 `ebp` and reference the stack relative to `esp`.
 
+Floating-point registers `ST1`-`ST7` must be empty before function call and after exiting a function.
+`ST0` must also be empty on call and on exit, if not used for returning a value.
+
 To return a value that fits into a `dword`, function should leave it in `eax` before exiting.
 Data types that require up to 8 bytes of memory can be returned in `edx:eax`, while longer
-values should be returned "in memory".
+values should be returned "in memory". Floating-point numbers are returned in `ST0`.
 
 The following image shows a typical stack structure during a call of a function that accepts
 two arguments:
