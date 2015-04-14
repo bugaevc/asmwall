@@ -752,3 +752,23 @@ Pops the value from the top of the FP-stack to `a`.
 
 `ST1 = ST0 / ST1` and remove `ST0` from the FP-stack.
 
+## Trigonometry
+
+### `fsin`
+
+`ST0 = sin(ST0)`
+
+`ST0` is supposed to be in radians.
+
+### `fcos`
+
+`ST0 = cos(ST0)`
+
+`ST0` is supposed to be in radians.
+
+### `fsincos`
+
+`ST0 = sin(ST0)` and push `cos(ST0)` onto the FP-stack.
+
+`ST0` is supposed to be in radians.
+
