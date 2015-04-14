@@ -670,3 +670,59 @@ diff:
     sub eax, dword[esp+8]
     ret 8
 ```
+
+Floating point instructions
+===========================
+
+## Transfers
+
+### `fld a`
+
+Push `a` onto FP-stack.
+
+`a` can't be a register, `a` has to be a floating point number.
+
+### `fild a`
+
+Push `a` onto FP-stack.
+
+`a` can't be a register, `a` has to be an integer.
+
+### `fst a`
+
+Copy the value from the top of the FP-stack to `a`.
+
+`a` can't be a register.
+
+### `fstp a`
+
+Pops the value from the top of the FP-stack to `a`.
+
+`a` can't be a register.
+
+## Addition and Subtraction
+
+### `fadd`
+
+`ST1 += ST0`
+
+### `faddp`
+
+`ST1 += ST0` and remove `ST0` from the FP-stack.
+
+### `fsub`
+
+`ST1 -= ST0`
+
+### `fsubp`
+
+`ST1 -= ST0` and remove `ST0` from the FP-stack.
+
+### `fsubr`
+
+`ST1 = ST0 - ST1`
+
+### `fsubrp`
+
+`ST1 = ST0 - ST1` and remove `ST0` from the FP-stack.
+
