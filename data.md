@@ -775,3 +775,29 @@ Pops the value from the top of the FP-stack to `a`.
 
 `ST0` is supposed to be in radians.
 
+## Loading Constants
+
+### `fldz`
+
+Push `+0.0` onto the stack.
+
+### `fld1`
+
+Push `+1.0` onto the stack.
+
+### `fldl2t`
+
+Push `log2(10)` onto the stack.
+
+### `fldlg2`
+
+Push `log10(2)` onto the stack.
+
+### `fldln2`
+
+Push `log(2)` onto the stack.
+
+### `fldpi`
+
+Push `pi` onto the stack.
+
