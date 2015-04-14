@@ -783,6 +783,14 @@ Pops the value from the top of the FP-stack to `a`.
 
 `ST0` is supposed to be in radians.
 
+### `fptan`
+
+`ST0 = tan(ST0)` and `fld1`.
+
+### `fpatan`
+
+`ST1 = atan2(ST1, ST0)` and remove `ST0` from the FP-stack.
+
 ## Loading Constants
 
 ### `fldz`
