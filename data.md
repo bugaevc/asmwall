@@ -726,3 +726,29 @@ Pops the value from the top of the FP-stack to `a`.
 
 `ST1 = ST0 - ST1` and remove `ST0` from the FP-stack.
 
+## Multiplication and Division
+
+### `fmul`
+
+`ST1 *= ST0`
+
+### `fmulp`
+
+`ST1 *= ST0` and remove `ST0` from the FP-stack.
+
+### `fdiv`
+
+`ST1 /= ST0`
+
+### `fdivp`
+
+`ST1 /= ST0` and remove `ST0` from the FP-stack.
+
+### `fdivr`
+
+`ST1 = ST0 / ST1`
+
+### `fdivrp`
+
+`ST1 = ST0 / ST1` and remove `ST0` from the FP-stack.
+
