@@ -584,27 +584,21 @@ The following example demonstrates the use of the frame pointer to access argume
 and the idea of storing values of registers on the stack to preserve them:
 
 ```
-; for two vectors (x1, y1) and (x2, y2)
-; calculate (x1*x2 + y1*y2) / 2
-scalar_product:
+; int max_item(int *arr, int len);
+max_item:
     push ebp
     mov ebp, esp
     push ebx
 
-    mov eax, dword[ebp+8] ; load x1 into eax
-    imul dword[ebp+16] ; multiply by x2
-
-    mov ebx, eax
-    mov ecx, edx ; store the values
-
-    mov eax, dword[ebp+12] ; load y1 into eax
-    imul dword[ebp+20] ; multiply by y2
-
-    add eax, ebx
-    adc edx, ecx
-
-    rcr edx, 1
-    rcr eax, 1 ; divide by 2 preserving the sign
+    mov ebx, dword[ebp+8] ; ebx = arr
+    mov eax, dword[ebx] ; res = arr[0]
+    mov ecx, dword[ebp+12] ; ecx = len
+.loop:
+    dec ecx
+    mov edx, dword[ebx + ecx*4] ; current item
+    cmp edx, eax
+    cmovg eax, edx
+    jecxnz .loop
 
     pop ebx
     leave
@@ -613,31 +607,35 @@ scalar_product:
 
 This function is called like that:
 ```
-push 3
-push -1
-push 8
-push 26
-call scalar_product ; (26, 8) * (-1, 3)
-add esp, 4*4 ; clean up the stack
+push len
+push arr
+call max_item_index
+add esp, 2*4 ; clean up the stack
 ; result in eax
 ```
 
-A simpler version of this function which deals with small numbers can
-avoid using frame pointer:
+It is possible to write a simpler version of this function which avoids using
+frame pointer:
 
 ```
-scalar_product:
-    mov eax, dword[esp+4] ; load load x1 into eax
-    imul eax, dword[esp+12] ; multiply by x2
-    mov ecx, dword[esp+12] ; load y1 into ecx
-    imul ecx, dword[esp+20] ; multiply by y2
-    add eax, ecx ; add x1*x2 to y1*y2
-    sar eax, 1 ; divide the result by 2
+; int max_item(int *arr, int len);
+max_item:
+    mov eax, dword[esp+4]
+    mov eax, dword[eax] ; res = arr[0]
+    mov ecx, dword[esp+8] ; ecx = len
+.loop:
+    dec ecx
+    mov edx, dword[esp+4]
+    mov edx, dword[edx + ecx*4]
+    cmp edx, eax
+    cmovg eax, edx
+    jecxnz .loop
+
     ret
 ```
 
-Note that this function should be called in the exact same way, since the
-optimization only changes function's internal behaviour, not its "public interface".
+Note that this function should be called in the exact same way, since the optimization
+only changes function's internal behaviour, not its "public interface".
 
 In the case of "in memory return" the caller should allocate the required amount of memory
 and push a pointer to it onto the stack after all the arguments. The callee then should
