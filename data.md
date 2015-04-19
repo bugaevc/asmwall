@@ -609,7 +609,7 @@ This function is called like that:
 ```
 push len
 push arr
-call max_item_index
+call max_item
 add esp, 2*4 ; clean up the stack
 ; result in eax
 ```
