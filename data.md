@@ -1,5 +1,5 @@
-Instructions
-============
+General Instructions
+====================
 
 ## Addition and Subtraction
 
@@ -671,6 +671,138 @@ diff:
     sub eax, dword[esp+8]
     ret 8
 ```
+
+String Instructions
+===================
+
+## Comparison
+
+### `cmpsS`
+
+```
+cmp S[esi], S[edi]
+
+if DF == 0:
+    esi += sizeof(S)
+    edi += sizeof(S)
+else:
+    esi -= sizeof(S)
+    edi -= sizeof(S)
+```
+
+This instruction compares two chunks of data stored at memory addresses `esi` and `edi`,
+sets appropriate flags, then changes `esi` and `edi` to point to the next chunks.
+
+`S`| Meaning | `sizeof(S)`
+:-:|---------|------------
+B  | byte    | 1
+W  | word    | 2
+D  | dword   | 4
+
+This instruction can be used with any repeating prefix.
+
+### `scasS`
+
+```
+cmp register, S[edi]
+
+if DF == 0:
+    edi += sizeof(S)
+else:
+    edi -= sizeof(S)
+```
+
+This instruction compares the accumulator register with a chunk of data stored at memory
+address `edi`, sets appropriate flags, then changes `edi` to point to the next chunk.
+
+`S`| Meaning | `sizeof(S)` | Register used
+---|---------|-------------|--------------
+B | byte  | 1 | `al`
+W | word  | 2 | `ax`
+D | dword | 4 | `eax`
+
+This instruction can be used with any repeating prefix.
+
+## Copying
+
+### `movsS`
+
+```
+mov S[edi], S[esi]
+
+if DF == 0:
+    esi += sizeof(S)
+    edi += sizeof(S)
+else:
+    esi -= sizeof(S)
+    edi -= sizeof(S)
+```
+
+This instruction copies a chunk of data from memory addresses `esi` to `edi`, then
+changes `esi` and `edi` to point to the next chunks.
+
+`S`| Meaning | `sizeof(S)`
+:-:|---------|------------
+B  | byte    | 1
+W  | word    | 2
+D  | dword   | 4
+
+This instruction can be used with the `rep` prefix.
+
+### `stosS`
+
+```
+mov S[edi], register
+
+if DF == 0:
+    edi += sizeof(S)
+else:
+    edi -= sizeof(S)
+```
+
+This instruction stores the accumulator register value to the memory chunk at address
+`edi`, then changes `edi` to point to the next chunk.
+
+`S`| Meaning | `sizeof(S)` | Register used
+---|---------|-------------|--------------
+B | byte  | 1 | `al`
+W | word  | 2 | `ax`
+D | dword | 4 | `eax`
+
+This instruction can be used with the `rep` prefix.
+
+### `lodsS`
+
+```
+mov register, S[esi]
+
+if DF == 0:
+    esi += sizeof(S)
+else:
+    esi -= sizeof(S)
+```
+
+This instruction loads the data stored in a chunk of memory at address `esi` to the
+accumulator register, then changes `esi` to point to the next chunk.
+
+`S`| Meaning | `sizeof(S)` | Register used
+---|---------|-------------|--------------
+B | byte  | 1 | `al`
+W | word  | 2 | `ax`
+D | dword | 4 | `eax`
+
+It doesn't make sense to use this instruction with any repeating prefix.
+
+## Direction Changing
+
+### `std`
+
+`DF = 1`
+
+### `cld`
+
+`DF = 0`
+
 
 Floating point instructions
 ===========================
