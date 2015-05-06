@@ -716,10 +716,10 @@ This instruction compares the accumulator register with a chunk of data stored a
 address `edi`, sets appropriate flags, then changes `edi` to point to the next chunk.
 
 `S`| Meaning | `sizeof(S)` | Register used
----|---------|-------------|--------------
-B | byte  | 1 | `al`
-W | word  | 2 | `ax`
-D | dword | 4 | `eax`
+:-:|---------|-------------|--------------
+B  | byte  | 1 | `al`
+W  | word  | 2 | `ax`
+D  | dword | 4 | `eax`
 
 This instruction can be used with any repeating prefix.
 
@@ -764,10 +764,10 @@ This instruction stores the accumulator register value to the memory chunk at ad
 `edi`, then changes `edi` to point to the next chunk.
 
 `S`| Meaning | `sizeof(S)` | Register used
----|---------|-------------|--------------
-B | byte  | 1 | `al`
-W | word  | 2 | `ax`
-D | dword | 4 | `eax`
+:-:|---------|-------------|--------------
+B  | byte  | 1 | `al`
+W  | word  | 2 | `ax`
+D  | dword | 4 | `eax`
 
 This instruction can be used with the `rep` prefix.
 
@@ -786,10 +786,10 @@ This instruction loads the data stored in a chunk of memory at address `esi` to 
 accumulator register, then changes `esi` to point to the next chunk.
 
 `S`| Meaning | `sizeof(S)` | Register used
----|---------|-------------|--------------
-B | byte  | 1 | `al`
-W | word  | 2 | `ax`
-D | dword | 4 | `eax`
+:-:|---------|-------------|--------------
+B  | byte  | 1 | `al`
+W  | word  | 2 | `ax`
+D  | dword | 4 | `eax`
 
 It doesn't make sense to use this instruction with any repeating prefix.
 
