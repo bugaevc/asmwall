@@ -803,6 +803,29 @@ It doesn't make sense to use this instruction with any repeating prefix.
 
 `DF = 0`
 
+## Prefixes
+
+### `repRR`
+
+```
+for(; ecx != 0; ecx--)
+{
+    string_instruction();
+    if(!condition)
+        break;
+}
+```
+
+Repeat the following string instruction while the condition is true, at most `ecx` times,
+decrementing `ecx` each time.
+
+RR | Condition
+:-:|----------
+   | ZF
+ E | ZF
+ Z | ZF
+NE | !ZF
+NZ | !ZF
 
 Floating point instructions
 ===========================
