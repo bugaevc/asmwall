@@ -1038,3 +1038,25 @@ Compares `ST0` with `a` and sets appropriate CPU flags.
 Compares `ST0` with `a`, sets appropriate CPU flags and pops `ST0`.
 
 `a` has to be a floating point memory value.
+
+## Convertions to and from integers
+
+### `fild a`
+
+Converts `a` to a floating point number and pushes it onto the FP-stack.
+
+`a` has to be a value in memory
+
+### `fist a`
+
+Converts `ST0` to integer by rounding it to the closest to `ST0` integer 
+and writes it back to `a`
+
+`a` has to be a value in memory
+
+### `fistp a`
+
+Converts `ST0` to integer by rounding it to the closest to `ST0` integer,
+writes it back to `a` and pops `ST0` from the FP-stack.
+
+`a` has to be a value in memory
