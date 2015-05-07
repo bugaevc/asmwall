@@ -1059,7 +1059,7 @@ writes it back to `a` and pops `ST0` from the FP-stack.
 
 Rounds `ST0` according to rounding mode set in the FPU control word.
 
-## Integer Addition and Subtraction
+## Integer Calculations
 
 ### `fiadd a`
 
@@ -1078,8 +1078,6 @@ Rounds `ST0` according to rounding mode set in the FPU control word.
 `ST0 = a - ST0`
 
 `a` has to be an integer value in memory.
-
-## Integer Multiplication and Division
 
 ### `fimul a`
 
