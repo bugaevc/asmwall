@@ -970,3 +970,71 @@ Push `pi` onto the FP-stack.
 ### `fpatan`
 
 `ST1 = atan2(ST1, ST0)` and remove `ST0` from the FP-stack.
+
+## Comparisons
+
+### `fcom a`
+ 
+Compares `ST0` with `a` and sets appropriate FPU flags.
+
+`a` has to be a floating point memory value.
+
+If either `a` or `ST0` is `NaN` an exception is raised.
+
+### `fcomp a`
+
+Compares `ST0` with `a`, sets appropriate FPU flags and pops `ST0`.
+
+`a` has to be a floating point memory value.
+
+If either `a` or `ST0` is `NaN` an exception is raised.
+
+### `fcompp`
+
+Compares `ST0` with `ST1`, sets appropriate FPU flags and pops `ST0` and `ST1`.
+
+If either `ST1` or `ST0` is `NaN` an exception is raised.
+
+### `fcomi a`
+ 
+Compares `ST0` with `a` and sets appropriate CPU flags.
+
+`a` has to be a floating point memory value.
+
+If either `a` or `ST0` is `NaN` an exception is raised.
+
+### `fcomip a`
+
+Compares `ST0` with `a`, sets appropriate CPU flags and pops `ST0`.
+
+`a` has to be a floating point memory value.
+
+If either `a` or `ST0` is `NaN` an exception is raised.
+
+### `fucom a`
+ 
+Compares `ST0` with `a` and sets appropriate FPU flags.
+
+`a` has to be a floating point memory value.
+
+### `fucomp a`
+
+Compares `ST0` with `a`, sets appropriate FPU flags and pops `ST0`.
+
+`a` has to be a floating point memory value.
+
+### `fucompp`
+
+Compares `ST0` with `ST1`, sets appropriate FPU flags and pops `ST0` and `ST1`.
+
+### `fucomi a`
+ 
+Compares `ST0` with `a` and sets appropriate CPU flags.
+
+`a` has to be a floating point memory value.
+
+### `fucomip a`
+
+Compares `ST0` with `a`, sets appropriate CPU flags and pops `ST0`.
+
+`a` has to be a floating point memory value.
