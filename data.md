@@ -838,12 +838,6 @@ Push `a` onto FP-stack.
 
 `a` can't be a register, `a` has to be a floating point number.
 
-### `fild a`
-
-Push `a` onto FP-stack.
-
-`a` can't be a register, `a` has to be an integer.
-
 ### `fst a`
 
 Copy the value from the top of the FP-stack to `a`.
@@ -1039,7 +1033,7 @@ Compares `ST0` with `a`, sets appropriate CPU flags and pops `ST0`.
 
 `a` has to be a floating point memory value.
 
-## Convertions to and from integers
+## Convertions to and from Integers
 
 ### `fild a`
 
@@ -1060,3 +1054,4 @@ Converts `ST0` to integer by rounding it to the closest to `ST0` integer,
 writes it back to `a` and pops `ST0` from the FP-stack.
 
 `a` has to be a value in memory
+
