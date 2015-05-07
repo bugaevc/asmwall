@@ -1055,6 +1055,10 @@ writes it back to `a` and pops `ST0` from the FP-stack.
 
 `a` has to be a value in memory.
 
+### `frndint`
+
+Rounds `ST0` according to rounding mode set in the FPU control word.
+
 ## Integer Addition and Subtraction
 
 ### `fiadd a`
