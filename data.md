@@ -856,6 +856,32 @@ Pops the value from the top of the FP-stack to `a`.
 
 `a` can't be a register.
 
+## Loading Constants
+
+### `fldz`
+
+Push `+0.0` onto the FP-stack.
+
+### `fld1`
+
+Push `+1.0` onto the FP-stack.
+
+### `fldl2t`
+
+Push `log2(10)` onto the FP-stack.
+
+### `fldlg2`
+
+Push `log10(2)` onto the FP-stack.
+
+### `fldln2`
+
+Push `log(2)` onto the FP-stack.
+
+### `fldpi`
+
+Push `pi` onto the FP-stack.
+
 ## Addition and Subtraction
 
 ### `fadd`
@@ -889,6 +915,7 @@ Pops the value from the top of the FP-stack to `a`.
 ### `fchs`
 
 `ST0 = -ST0`
+
 
 ## Multiplication and Division
 
@@ -943,30 +970,3 @@ Pops the value from the top of the FP-stack to `a`.
 ### `fpatan`
 
 `ST1 = atan2(ST1, ST0)` and remove `ST0` from the FP-stack.
-
-## Loading Constants
-
-### `fldz`
-
-Push `+0.0` onto the stack.
-
-### `fld1`
-
-Push `+1.0` onto the stack.
-
-### `fldl2t`
-
-Push `log2(10)` onto the stack.
-
-### `fldlg2`
-
-Push `log10(2)` onto the stack.
-
-### `fldln2`
-
-Push `log(2)` onto the stack.
-
-### `fldpi`
-
-Push `pi` onto the stack.
-
