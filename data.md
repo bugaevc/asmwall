@@ -1039,19 +1039,38 @@ Compares `ST0` with `a`, sets appropriate CPU flags and pops `ST0`.
 
 Converts `a` to a floating point number and pushes it onto the FP-stack.
 
-`a` has to be a value in memory
+`a` has to be a value in memory.
 
 ### `fist a`
 
 Converts `ST0` to integer by rounding it to the closest to `ST0` integer 
-and writes it back to `a`
+and writes it back to `a`.
 
-`a` has to be a value in memory
+`a` has to be a value in memory.
 
 ### `fistp a`
 
 Converts `ST0` to integer by rounding it to the closest to `ST0` integer,
 writes it back to `a` and pops `ST0` from the FP-stack.
 
-`a` has to be a value in memory
+`a` has to be a value in memory.
 
+## Integer Addition and Subtraction
+
+### `fiadd a`
+
+`ST0 += a`
+
+`a` has to be an integer value in memory.
+
+### `fisub a`
+
+`ST0 -= a`
+
+`a` has to be an integer value in memory.
+
+### `fisubr a`
+
+`ST0 = a - ST0`
+
+`a` has to be an integer value in memory.
