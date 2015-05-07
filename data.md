@@ -1033,7 +1033,7 @@ Compares `ST0` with `a`, sets appropriate CPU flags and pops `ST0`.
 
 `a` has to be a floating point memory value.
 
-## Convertions to and from Integers
+## Conversions to and from Integers
 
 ### `fild a`
 
