@@ -1074,3 +1074,25 @@ writes it back to `a` and pops `ST0` from the FP-stack.
 `ST0 = a - ST0`
 
 `a` has to be an integer value in memory.
+
+## Integer Multiplication and Division
+
+### `fimul a`
+
+`ST0 *= a`
+
+`a` has to be an integer value in memory.
+
+### `fidiv a`
+
+`ST0 /= a`
+
+`a` has to be an integer value in memory.
+
+### `fidivr a`
+
+`ST0 = a / ST0`
+
+`a` has to be an integer value in memory.
+
+
