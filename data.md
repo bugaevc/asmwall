@@ -125,7 +125,9 @@ be sure to convert registers (`ax` or `eax`) to appropriate types.
 
 ### `lea a, [address]`
 
-`lea` calculates an `address` expression and writes it back to `a`.
+`a = address`
+
+`lea` calculates an `address` expression and writes it back to `a`. Note that the memory referenced by `address` is not accessed.
 
 `address` is an expression formatted like this:
 `base + index * scale + displacement`. `base` is a register,
@@ -136,6 +138,8 @@ parts of `displacement` to different places. While each
 of the three summands can be absent, it is not possible to use
 several summands of the same type (use several `lea` instructions
 in a row for that).
+
+This instruction is often used to perform basic arithmetics since a chain of dedicated `add` and `shl` instructions is less compact and works slower.
 
 
 ## Data Transfer and Size Conversion
