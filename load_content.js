@@ -5,7 +5,8 @@ $(document).ready(function() {
     {
         var command = location.search.slice(1);
         command = command.replace(/_/g, ' ').replace(/\//g, '');
-        console.log(command);
+        document.title = command + ' - ' + document.title;
+
         var md = ""; // markdown code of the current section
         var isCurrent = false; // whether we are inside the needed section
     }
