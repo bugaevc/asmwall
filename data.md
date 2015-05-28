@@ -139,7 +139,7 @@ of the three summands can be absent, it is not possible to use
 several summands of the same type (use several `lea` instructions
 in a row for that).
 
-This instruction is often used to perform basic arithmetics since a chain of dedicated `add` and `shl` instructions is less compact and works slower.
+This instruction is often used to perform basic arithmetics even if it isn't related to memory addresses, since a chain of dedicated `add` and `shl` instructions is less compact and works slower.
 
 
 ## Data Transfer and Size Conversion
