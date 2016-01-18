@@ -1,5 +1,4 @@
-General Instructions
-====================
+# General Instructions
 
 ## Addition and Subtraction
 
@@ -547,8 +546,7 @@ CC | Flags
 `np` | `!PF`
 
 
-Calling Conventions
-===================
+# Calling Conventions
 
 ### cdecl
 
@@ -679,8 +677,7 @@ diff:
     ret 8
 ```
 
-String Instructions
-===================
+# String Instructions
 
 ## Comparison
 
@@ -834,8 +831,7 @@ RR | Condition
 NE | !ZF
 NZ | !ZF
 
-Floating point instructions
-===========================
+# Floating point instructions
 
 ## Transfers
 
