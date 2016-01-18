@@ -1,5 +1,5 @@
 $in = $("#content");
-var initialTitle = "asmwall - NASM handbook";
+var initialTitle = "asmwall - NASM handbook - A Wall to Remember";
 function renderPage(command) {
     $in.empty();
     if (command) {
