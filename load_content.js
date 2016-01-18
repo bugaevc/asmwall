@@ -64,6 +64,12 @@ $(document).ready(function() {
                     md += arr[i] + '\n';
             }
             if (!showAll)
-                $in.html(marked(md));
+                if (md)
+                    $in.html(marked(md));
+                else
+                    $.get("404.md", function(data2) {
+                        document.title = "404";
+                        $in.html(marked(data2));
+                    });
         });
 });
