@@ -127,7 +127,8 @@ be sure to convert registers (`ax` or `eax`) to appropriate types.
 
 `a = address`
 
-`lea` calculates an `address` expression and writes it back to `a`. Note that the memory referenced by `address` is not accessed.
+`lea` calculates an `address` expression and writes it back
+to `a`. Note that the memory referenced by `address` is not accessed.
 
 `address` is an expression formatted like this:
 `base + index * scale + displacement`. `base` is a register,
@@ -139,7 +140,9 @@ of the three summands can be absent, it is not possible to use
 several summands of the same type (use several `lea` instructions
 in a row for that).
 
-This instruction is often used to perform basic arithmetics even if it isn't related to memory addresses, since a chain of dedicated `add` and `shl` instructions is less compact and works slower.
+This instruction is often used to perform basic arithmetics even if
+it isn't related to memory addresses, since a chain of dedicated `add`
+and `shl` instructions is less compact and works slower.
 
 
 ## Data Transfer and Size Conversion
@@ -812,10 +815,10 @@ It doesn't make sense to use this instruction with any repeating prefix.
 ### `repRR`
 
 ```
-for(; ecx != 0; ecx--)
+for (; ecx != 0; ecx--)
 {
     string_instruction();
-    if(!condition)
+    if (!condition)
         break;
 }
 ```
@@ -1100,5 +1103,3 @@ Rounds `ST0` according to rounding mode set in the FPU control word.
 `ST0 = a / ST0`
 
 `a` has to be an integer value in memory.
-
-
