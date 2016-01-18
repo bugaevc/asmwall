@@ -71,5 +71,6 @@ $(document).ready(function() {
                         document.title = "404";
                         $in.html(marked(data2));
                     });
+            $in.removeClass("long");
         });
 });

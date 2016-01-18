@@ -15,6 +15,10 @@ header h1 {
     font-size: 150%;
 }
 
+#content.long {
+    min-height: 30000px;
+}
+
 code {
     line-height: 1.5em;
 }
