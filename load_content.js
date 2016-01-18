@@ -1,6 +1,7 @@
 $in = $("#content");
 var initialTitle = "asmwall - NASM handbook";
 function renderPage(command) {
+    $in.empty();
     if (command) {
         document.title = command + ' - ' + initialTitle;
 
@@ -8,7 +9,7 @@ function renderPage(command) {
         var md = ""; // markdown code of the current section
         var isCurrent = false; // whether we are inside the needed section
         lines.forEach(function (line) {
-            if (line[0] == '#') {
+            if (line[0] === '#') {
                 var content = line.replace(/#/g, '').replace(/`/g, '');
                 isCurrent = (command === $.trim(content));
             }
@@ -27,7 +28,7 @@ function renderPage(command) {
         $in.addClass("instructions");
         var $list = $("<ul></ul>");
         lines.forEach(function (line) {
-            if (line[0] != '#')
+            if (line[0] !== '#')
                 return;
             var level = line.indexOf(' ');
             var content = line.replace(/#/g, '').replace(/`/g, '');
@@ -61,13 +62,33 @@ function renderPage(command) {
     }
 }
 
+function urlToCommand(url) {
+    if (!url)
+        return "";
+    return url.slice(1).replace(/_/g, ' ').replace(/\//g, '');
+}
+
 // first load
 
 var lines;
-$.get("data.md", function(data) {
+$.get("data.md", function (data) {
     lines = data.split('\n');
-    var command = location.search.length === 0 ? "" :
-        location.search.slice(1).replace(/_/g, ' ').replace(/\//g, '');
+    var command = urlToCommand(location.search);
     renderPage(command);
+    history.replaceState(command, null, location.search);
     $in.removeClass("long");
+});
+$(document).on("click", "a", function () {
+    // Note: this.href is an absolute URL like
+    // https://bugaevc.github.io/asmwall/?cdecl
+    // while $(this).attr("href") is exactly the given value
+    // which is in this case just "?cdecl"
+    var href = $(this).attr("href");
+    var command = urlToCommand(href);
+    renderPage(command);
+    history.pushState(command, null, href);
+    return false;
+});
+window.addEventListener('popstate', function(e) {
+    renderPage(e.state);
 });
