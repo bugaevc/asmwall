@@ -1,25 +1,22 @@
 $(document).ready(function() {
     $in = $("#content");
     var showAll = (location.search.length === 0);
-    if(!showAll)
-    {
+    if (!showAll) {
         var command = location.search.slice(1);
         command = command.replace(/_/g, ' ').replace(/\//g, '');
         document.title = command + ' - ' + document.title;
 
         var md = ""; // markdown code of the current section
         var isCurrent = false; // whether we are inside the needed section
-    }
-    else
-    {
+    } else {
         $in.addClass("instructions");
         var $list = $("<ul></ul>");
     }
     function addItem(text, level) {
-        switch(level) {
+        switch (level) {
             case 1:
             case 2:
-                if($list.filter(":empty").length === 0)
+                if (!$list.is(":empty"))
                     $list = $("<ul></ul>");
                 var headerTag = '<h' + (level+1) + '>' +
                                 '</h' + (level+1) + '>';
@@ -44,32 +41,29 @@ $(document).ready(function() {
     }
     $.get("data.md", function(data) {
             var arr = data.split("\n");
-            for(var i = 0; i < arr.length; i++)
-            {
-                if(arr[i][0] === '=')
-                    if(showAll)
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i][0] === '=')
+                    if (showAll)
                         addItem(arr[i-1], 1);
-                    else if(isCurrent)
-                    {
+                    else if (isCurrent) {
                         isCurrent = false;
                         // We have already added an extra line
                         md = md.slice(0, -1);
                         md = md.slice(0, md.lastIndexOf('\n'));
                     }
-                if(arr[i][0] === '#')
-                {
+                if (arr[i][0] === '#') {
                     var level = arr[i].indexOf(' ');
                     var content = arr[i].replace(/#/g, '').replace(/`/g, '');
                     content = $.trim(content);
-                    if(showAll)
+                    if (showAll)
                         addItem(content, level);
                     else
                         isCurrent = (command === content);
                 }
-                if(!showAll && isCurrent)
+                if (!showAll && isCurrent)
                     md += arr[i] + '\n';
             }
-            if(!showAll)
+            if (!showAll)
                 $in.html(marked(md));
         });
 });
