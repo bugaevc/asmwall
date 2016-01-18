@@ -26,7 +26,12 @@ function renderPage(command) {
         document.title = initialTitle;
         $in.addClass("instructions");
         var $list = $("<ul></ul>");
-        function addItem(text, level) {
+        lines.forEach(function (line) {
+            if (line[0] != '#')
+                return;
+            var level = line.indexOf(' ');
+            var content = line.replace(/#/g, '').replace(/`/g, '');
+            content = $.trim(content);
             switch (level) {
                 case 1:
                 case 2:
@@ -35,7 +40,7 @@ function renderPage(command) {
                     var headerTag = '<h' + (level+1) + '>' +
                                     '</h' + (level+1) + '>';
                     $(headerTag)
-                        .text(text)
+                        .text(content)
                         .appendTo($in)
                         .after($list);
                     break;
@@ -43,23 +48,15 @@ function renderPage(command) {
                 case 3:
                     var $a = $("<a></a>")
                         .addClass("block-link");
-                    var href = '?' + text.replace(/ /g, '_');
+                    var href = '?' + content.replace(/ /g, '_');
                     $a
                         .attr("href", href)
-                        .text(text);
+                        .text(content);
                     $('<li></li>')
                         .append($a)
                         .appendTo($list);
                     break;
             }
-        }
-        lines.forEach(function (line) {
-            if (line[0] != '#')
-                return;
-            var level = line.indexOf(' ');
-            var content = line.replace(/#/g, '').replace(/`/g, '');
-            content = $.trim(content);
-            addItem(content, level);
         });
     }
 }
