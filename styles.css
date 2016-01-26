@@ -13,8 +13,16 @@ header h1 {
     padding: 5px;
 }
 
-#content {
-    font-size: 150%;
+@media all and (max-width: 250px) {
+    header h1 {
+        font-size: 1em;
+    }
+}
+
+@media all and (min-width: 251px) {
+    #content {
+        font-size: 150%;
+    }
 }
 
 #content.long {
