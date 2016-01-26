@@ -30,6 +30,12 @@ table {
     border-collapse: collapse;
 }
 
+img {
+    display: block;
+    margin: 1em auto;
+    max-width: 100%;
+}
+
 th, td {
     padding: 5px 15px;
     border: 1px solid #EEE;
