@@ -1,7 +1,6 @@
 $in = $("#content");
 var initialTitle = "asmwall - NASM handbook - A Wall to Remember";
-function renderPage(command) {
-    $in.empty();
+function getMarkdown(command) {
     function forHeader(line, f) {
         if (line[0] !== '#')
             return false;
@@ -10,65 +9,62 @@ function renderPage(command) {
         f($.trim(content), level);
         return true;
     }
+    var res = "";
     if (command) {
-        document.title = command + ' - ' + initialTitle;
-        $in.removeClass("instructions");
-        var md = ""; // markdown code of the current section
-        var isCurrent = false; // whether we are inside the needed section
+        var isCurrent = false;
         lines.forEach(function (line) {
-            forHeader(line, function (content) {
-                isCurrent = (command === content);
+            forHeader(line, function (content, level) {
+                isCurrent = (command === content) && level === 3;
             });
             if (isCurrent)
-                md += line + '\n';
+                res += line + '\n';
         });
-        if (md)
-            $in.html(marked(md));
-        else
-            $.get("404.md", function(data) {
-                document.title = "404 - " + initialTitle;
-                $in.html(marked(data));
-            });
     } else {
-        document.title = initialTitle;
-        $in.addClass("instructions");
-        var $list = $("<ul></ul>");
         lines.forEach(function (line) {
-            forHeader(line, function(content, level) {
+            forHeader(line, function (content, level) {
                 switch (level) {
                     case 1:
                     case 2:
-                        if (!$list.is(":empty"))
-                            $list = $("<ul></ul>");
-                        var headerTag = '<h' + (level+1) + '>' +
-                                        '</h' + (level+1) + '>';
-                        $(headerTag)
-                            .text(content)
-                            .appendTo($in)
-                            .after($list);
+                        res += '#'.repeat(level + 1) + ' ' + content + '\n';
                         break;
-
                     case 3:
-                        var $a = $("<a></a>")
-                            .addClass("block-link");
-                        var href = '?' + content.replace(/ /g, '_');
-                        $a
-                            .attr("href", href)
-                            .text(content);
-                        $('<li></li>')
-                            .append($a)
-                            .appendTo($list);
+                        var url = commandToUrl(content);
+                        res += '['+content+']('+url+')' + '\n';
                         break;
                 }
             });
         });
     }
+    return res;
+}
+function renderPage(command) {
+    var md = getMarkdown(command);
+    $in.empty();
+    if (command) {
+        document.title = command + ' - ' + initialTitle;
+        $in.removeClass("instructions");
+    } else {
+        document.title = initialTitle;
+        $in.addClass("instructions");
+    }
+    if (md)
+        $in.html(marked(md));
+    else
+        $.get("404.md", function(data) {
+            document.title = "404 - " + initialTitle;
+            $in.html(marked(data));
+        });
 }
 
 function urlToCommand(url) {
     if (!url)
         return "";
     return url.slice(1).replace(/_/g, ' ').replace(/\//g, '');
+}
+function commandToUrl(command) {
+    if (!command)
+        return "";
+    return '?' + command.replace(/ /g, '_');
 }
 
 // first load
@@ -78,7 +74,7 @@ $.get("data.md", function (data) {
     lines = data.split('\n');
     var command = urlToCommand(location.search);
     renderPage(command);
-    history.replaceState(command, null, location.search);
+    // history.replaceState(command, null, location.search);
     $in.removeClass("long");
 });
 /*

@@ -53,24 +53,23 @@ h3 {
     font-weight: normal;
     background: #EEE;
     margin: 0;
-    padding: 0.5em;
+    padding: .5em;
 }
 
-.instructions ul {
-    padding: 0;
-    margin: 0.5em;
+.instructions > p {
+    margin: .5em 0;
 }
 
-.instructions li {
+.instructions > p > a {
     display: block;
-    padding: 10px;
-    list-style-type: none;
+    color: initial;
+    text-decoration: none;
     font-family: monospace;
-    transition: background 0.3s;
+    padding: .5em;
+    transition: background .3s;
 }
 
-.instructions li:hover,
-.instructions li:active {
+.instructions > p > a:hover {
     background: #EEE;
 }
 
