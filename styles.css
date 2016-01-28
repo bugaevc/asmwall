@@ -73,6 +73,12 @@ h3 {
     background: #EEE;
 }
 
+.details {
+    border-top: 1px solid #EEE;
+    border-bottom: 1px solid #EEE;
+    margin-bottom: 1em;
+}
+
 .block-link {
     display: block;
     color: initial;

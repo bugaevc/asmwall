@@ -77,20 +77,28 @@ $.get("data.md", function (data) {
     // history.replaceState(command, null, location.search);
     $in.removeClass("long");
 });
-/*
-$(document).on("click", "a", function () {
+
+$(document).on("click", ".instructions > p > a", function () {
+    var details = $(this).next(".details");
+    if (details.length) {
+        details.slideUp(function() {
+            details.remove();
+        });
+        return false;
+    }
     // Note: this.href is an absolute URL like
     // https://bugaevc.github.io/asmwall/?cdecl
     // while $(this).attr("href") is exactly the given value
     // which is in this case just "?cdecl"
     var href = $(this).attr("href");
     var command = urlToCommand(href);
-    renderPage(command);
-    history.pushState(command, null, href);
+    var md = getMarkdown(command);
+    md = md.substring(md.indexOf('\n') + 1);
+    $('<div class="details"></div>')
+        .html(marked(md))
+        .hide()
+        .insertAfter(this)
+        .slideDown();
     return false;
 });
-window.addEventListener('popstate', function(e) {
-    renderPage(e.state);
-});
-*/
 
