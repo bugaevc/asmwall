@@ -66,17 +66,24 @@ h3 {
     text-decoration: none;
     font-family: monospace;
     padding: .5em;
-    transition: background .3s;
 }
 
 .instructions > p > a:hover {
     background: #EEE;
 }
 
+.instructions > p > a:hover::after {
+    float: right;
+    font-size: initial;
+    line-height: 2em;
+    color: #CCC;
+    content: "[permalink]";
+}
+
 .details {
     border-top: 1px solid #EEE;
     border-bottom: 1px solid #EEE;
-    margin-bottom: 1em;
+    margin: .5em 0 1em 0;
 }
 
 .block-link {

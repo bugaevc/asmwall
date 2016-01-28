@@ -67,19 +67,20 @@ function commandToUrl(command) {
     return '?' + command.replace(/ /g, '_');
 }
 
-// first load
-
 var lines;
 $.get("data.md", function (data) {
     lines = data.split('\n');
     var command = urlToCommand(location.search);
     renderPage(command);
-    // history.replaceState(command, null, location.search);
     $in.removeClass("long");
 });
 
-$(document).on("click", ".instructions > p > a", function () {
-    var details = $(this).next(".details");
+$(document).on("click", ".instructions > p > a", function (event) {
+    var $this = $(this);
+    // check for clicks on [permalink]
+    if ($this.offset().left + $this.width() - event.pageX < 75)
+        return true;
+    var details = $this.next(".details");
     if (details.length) {
         details.slideUp(function() {
             details.remove();
@@ -90,14 +91,14 @@ $(document).on("click", ".instructions > p > a", function () {
     // https://bugaevc.github.io/asmwall/?cdecl
     // while $(this).attr("href") is exactly the given value
     // which is in this case just "?cdecl"
-    var href = $(this).attr("href");
+    var href = $this.attr("href");
     var command = urlToCommand(href);
     var md = getMarkdown(command);
     md = md.substring(md.indexOf('\n') + 1);
     $('<div class="details"></div>')
         .html(marked(md))
         .hide()
-        .insertAfter(this)
+        .insertAfter($this)
         .slideDown();
     return false;
 });
