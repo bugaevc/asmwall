@@ -81,6 +81,7 @@ $.get("data.md", function (data) {
     history.replaceState(command, null, location.search);
     $in.removeClass("long");
 });
+/*
 $(document).on("click", "a", function () {
     // Note: this.href is an absolute URL like
     // https://bugaevc.github.io/asmwall/?cdecl
@@ -95,3 +96,5 @@ $(document).on("click", "a", function () {
 window.addEventListener('popstate', function(e) {
     renderPage(e.state);
 });
+*/
+
