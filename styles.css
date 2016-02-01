@@ -40,7 +40,7 @@ table {
 
 img {
     display: block;
-    margin: 1em auto;
+    margin: 0 auto;
     max-width: 100%;
 }
 
@@ -83,7 +83,12 @@ h3 {
 .details {
     border-top: 1px solid #EEE;
     border-bottom: 1px solid #EEE;
-    margin: .5em 0 1em 0;
+    margin: .5em -5vw;
+    padding: 0 5vw;
+}
+
+.details > * {
+    margin: 1em 0;
 }
 
 .block-link {
