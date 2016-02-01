@@ -412,39 +412,6 @@ filled with the sign bit of `a`.
 
 Perform `jmp label` if the condition holds true.
 
-Some conditions are only flag-based and some make sense if executed after `cmp` instruction.
-
-The following table specifies possible meanings of using conditional jumps
-after `cmp a, b` instruction:
-
-CC | Alt CC | Meaning | Signity | Flags
-:-:|:------:|:-------:|:-------:|:-----
-`e`  | `z`  | `a == b` | Both | `ZF`
-`ne` | `nz` | `a != b` | Both | `!ZF`
-`ge` | `nl` | `a >= b` | Signed | `SF == OF`
-`g` | `nle` | `a > b` | Signed | `SF == OF` and `!ZF`
-`le` | `ng` | `a <= b` | Signed | `SF != OF` or `ZF`
-`l` | `nge` | `a < b` | Signed | `SF != OF`
-`ae` | `nb` | `a >= b` | Unsigned | `!CF`
-`a` | `nbe` | `a > b` | Unsigned | `!CF` and `!ZF`
-`be` | `na` | `a <= b` | Unsigned | `CF` or `ZF`
-`b` | `nae` | `a < b` | Unsigned | `CF`
-
-Flag-based conditions:
-
-CC | Flags
-:--:|:-----:
-`z` | `ZF`
-`c` | `CF`
-`o` | `OF`
-`s` | `SF`
-`p` | `PF`
-`nz` | `!ZF`
-`nc` | `!CF`
-`no` | `!OF`
-`ns` | `!SF`
-`np` | `!PF`
-
 ### `jecxz label`
 
 Equivalent to:
@@ -473,64 +440,48 @@ This instruction is usually used for implementing loops with post-condition wher
 
 This instruction sets `a` to `1` if the condition holds true and to zero otherwise.
 
-Some conditions are only flag-based and some make sense if executed after `cmp` instruction.
-
-The following table specifies possible meanings of using conditional jumps
-after `cmp a, b` instruction:
-
-CC | Alt CC | Meaning | Signity | Flags
-:-:|:------:|:-------:|:-------:|:-----
-`e`  | `z`  | `a == b` | Both | `ZF`
-`ne` | `nz` | `a != b` | Both | `!ZF`
-`ge` | `nl` | `a >= b` | Signed | `SF == OF`
-`g` | `nle` | `a > b` | Signed | `SF == OF` and `!ZF`
-`le` | `ng` | `a <= b` | Signed | `SF != OF` or `ZF`
-`l` | `nge` | `a < b` | Signed | `SF != OF`
-`ae` | `nb` | `a >= b` | Unsigned | `!CF`
-`a` | `nbe` | `a > b` | Unsigned | `!CF` and `!ZF`
-`be` | `na` | `a <= b` | Unsigned | `CF` or `ZF`
-`b` | `nae` | `a < b` | Unsigned | `CF`
-
-Flag-based conditions:
-
-CC | Flags
-:--:|:-----:
-`z` | `ZF`
-`c` | `CF`
-`o` | `OF`
-`s` | `SF`
-`p` | `PF`
-`nz` | `!ZF`
-`nc` | `!CF`
-`no` | `!OF`
-`ns` | `!SF`
-`np` | `!PF`
-
 ### `cmovCC a, b`
 
 Perform `mov a, b` if the condition holds true.
 
 `a` and `b` both have to be registers.
 
-Some conditions are only flag-based and some make sense if executed after `cmp` instruction.
 
-The following table specifies possible meanings of using conditional jumps
-after `cmp a, b` instruction:
+# Conditions and Flags
 
-CC | Alt CC | Meaning | Signity | Flags
-:-:|:------:|:-------:|:-------:|:-----
-`e`  | `z`  | `a == b` | Both | `ZF`
-`ne` | `nz` | `a != b` | Both | `!ZF`
-`ge` | `nl` | `a >= b` | Signed | `SF == OF`
-`g` | `nle` | `a > b` | Signed | `SF == OF` and `!ZF`
-`le` | `ng` | `a <= b` | Signed | `SF != OF` or `ZF`
-`l` | `nge` | `a < b` | Signed | `SF != OF`
-`ae` | `nb` | `a >= b` | Unsigned | `!CF`
-`a` | `nbe` | `a > b` | Unsigned | `!CF` and `!ZF`
-`be` | `na` | `a <= b` | Unsigned | `CF` or `ZF`
-`b` | `nae` | `a < b` | Unsigned | `CF`
+## Conditions
 
-Flag-based conditions:
+### Signed numbers
+
+These conditions work for signed numbers when used after executing `cmp a, b`
+instruction.
+
+  CC      | Meaning | Flags
+:--------:|:-------:|:----:
+   `e`    | `a == b`| `ZF`
+   `ne`   | `a != b`| `!ZF`
+`ge`, `nl`| `a >= b`| `SF == OF`
+`l`, `nge`| `a < b` | `SF != OF`
+`g`, `nle`| `a > b` | `SF == OF` and `!ZF`
+`le`, `ng`| `a <= b`| `SF != OF` or `ZF`
+
+### Unsigned numbers
+
+These conditions work for unsigned numbers when used after executing `cmp a, b`
+instruction.
+
+  CC      | Meaning | Flags
+:--------:|:-------:|:----:
+   `e`    | `a == b`| `ZF`
+   `ne`   | `a != b`| `!ZF`
+`ae`, `nb`| `a >= b`| `!CF`
+`b`, `nae`| `a < b` | `CF`
+`a`, `nbe`| `a > b` | `!CF` and `!ZF`
+`be`, `na`| `a <= b`| `CF` or `ZF`
+
+### Raw flags
+
+These conditions just check for a specific flag being set or not set.
 
 CC | Flags
 :--:|:-----:
@@ -544,7 +495,6 @@ CC | Flags
 `no` | `!OF`
 `ns` | `!SF`
 `np` | `!PF`
-
 
 # Calling Conventions
 
@@ -971,7 +921,7 @@ Push `pi` onto the FP-stack.
 ## Comparisons
 
 ### `fcom a`
- 
+
 Compares `ST0` with `a` and sets appropriate FPU flags.
 
 `a` has to be a floating point memory value.
@@ -993,7 +943,7 @@ Compares `ST0` with `ST1`, sets appropriate FPU flags and pops `ST0` and `ST1`.
 If either `ST1` or `ST0` is `NaN` an exception is raised.
 
 ### `fcomi a`
- 
+
 Compares `ST0` with `a` and sets appropriate CPU flags.
 
 `a` has to be a floating point memory value.
@@ -1009,7 +959,7 @@ Compares `ST0` with `a`, sets appropriate CPU flags and pops `ST0`.
 If either `a` or `ST0` is `NaN` an exception is raised.
 
 ### `fucom a`
- 
+
 Compares `ST0` with `a` and sets appropriate FPU flags.
 
 `a` has to be a floating point memory value.
@@ -1025,7 +975,7 @@ Compares `ST0` with `a`, sets appropriate FPU flags and pops `ST0`.
 Compares `ST0` with `ST1`, sets appropriate FPU flags and pops `ST0` and `ST1`.
 
 ### `fucomi a`
- 
+
 Compares `ST0` with `a` and sets appropriate CPU flags.
 
 `a` has to be a floating point memory value.
@@ -1046,7 +996,7 @@ Converts `a` to a floating point number and pushes it onto the FP-stack.
 
 ### `fist a`
 
-Converts `ST0` to integer by rounding it to the closest to `ST0` integer 
+Converts `ST0` to integer by rounding it to the closest to `ST0` integer
 and writes it back to `a`.
 
 `a` has to be a value in memory.
