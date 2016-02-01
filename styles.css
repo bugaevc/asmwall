@@ -1,98 +1,98 @@
 body {
-    margin: 0;
-    padding: 0 5%;
+  margin: 0;
+  padding: 0 5%;
 }
 
 header {
-    border-bottom: 1px solid #EEE;
+  border-bottom: 1px solid #EEE;
 }
 header h1 {
-    text-align: center;
-    font-family: sans-serif;
-    margin: 0;
-    padding: 5px;
+  text-align: center;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 5px;
 }
 
 @media all and (max-width: 250px) {
-    header h1 {
-        font-size: 1em;
-    }
+  header h1 {
+    font-size: 1em;
+  }
 }
 
 @media all and (min-width: 251px) {
-    #content {
-        font-size: 150%;
-    }
+  #content {
+    font-size: 150%;
+  }
 }
 
 #content.long {
-    min-height: 30000px;
+  min-height: 30000px;
 }
 
 code {
-    line-height: 1.5em;
+  line-height: 1.5em;
 }
 
 table {
-    font-size: inherit;
-    border-collapse: collapse;
+  font-size: inherit;
+  border-collapse: collapse;
 }
 
 img {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
 }
 
 th, td {
-    padding: 5px 15px;
-    border: 1px solid #EEE;
+  padding: 5px 15px;
+  border: 1px solid #EEE;
 }
 
 h3 {
-    font-weight: normal;
-    background: #EEE;
-    margin: 0;
-    padding: .5em;
+  font-weight: normal;
+  background: #EEE;
+  margin: 0;
+  padding: .5em;
 }
 
 .instructions > p {
-    margin: .5em 0;
+  margin: .5em 0;
 }
 
 .instructions > p > a {
-    display: block;
-    color: initial;
-    text-decoration: none;
-    font-family: monospace;
-    padding: .5em;
+  display: block;
+  color: initial;
+  text-decoration: none;
+  font-family: monospace;
+  padding: .5em;
 }
 
 .instructions > p > a:hover {
-    background: #EEE;
+  background: #EEE;
 }
 
 .instructions > p > a:hover::after {
-    float: right;
-    font-size: initial;
-    line-height: 2em;
-    color: #CCC;
-    content: "[link]";
+  float: right;
+  font-size: initial;
+  line-height: 2em;
+  color: #CCC;
+  content: "[link]";
 }
 
 .details {
-    border-top: 1px solid #EEE;
-    border-bottom: 1px solid #EEE;
-    margin: .5em -5vw;
-    padding: 0 5vw;
+  border-top: 1px solid #EEE;
+  border-bottom: 1px solid #EEE;
+  margin: .5em -5vw;
+  padding: 0 5vw;
 }
 
 .details > * {
-    margin: 1em 0;
+  margin: 1em 0;
 }
 
 .block-link {
-    display: block;
-    color: initial;
-    text-decoration: none;
+  display: block;
+  color: initial;
+  text-decoration: none;
 }
