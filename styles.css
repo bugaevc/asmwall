@@ -34,8 +34,16 @@ code {
 }
 
 table {
-    font-size: inherit;
+    width: 100%;
+    font-size: 5vw;
     border-collapse: collapse;
+}
+
+@media all and (min-width: 500px) {
+    table {
+        width: initial;
+        font-size: inherit;
+    }
 }
 
 img {
@@ -45,7 +53,7 @@ img {
 }
 
 th, td {
-    padding: 5px 15px;
+    padding: 2%;
     border: 1px solid #EEE;
 }
 
