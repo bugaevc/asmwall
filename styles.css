@@ -19,6 +19,12 @@ header h1 {
   }
 }
 
+header h1 a {
+  display: block;
+  color: initial;
+  text-decoration: none;
+}
+
 @media all and (min-width: 251px) {
   #content {
     font-size: 150%;
@@ -29,35 +35,18 @@ header h1 {
   min-height: 30000px;
 }
 
-code {
-  line-height: 1.5em;
-}
-
-table {
-  font-size: inherit;
-  border-collapse: collapse;
-}
-
-img {
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-}
-
-th, td {
-  padding: 5px 15px;
-  border: 1px solid #EEE;
-}
-
 h3 {
+  /* both .instructions and .details */
   font-weight: normal;
   background: #EEE;
-  margin: 0;
+  margin: .5em 0;
   padding: .5em;
 }
 
 .instructions > p {
-  margin: .5em 0;
+  /* a paragraph contains a whole block of links between two headers */
+  margin: 0;
+  padding: 0;
 }
 
 .instructions > p > a {
@@ -80,7 +69,7 @@ h3 {
   content: "[link]";
 }
 
-.details {
+.instructions .details {
   border-top: 1px solid #EEE;
   border-bottom: 1px solid #EEE;
   margin: .5em -5vw;
@@ -91,8 +80,22 @@ h3 {
   margin: 1em 0;
 }
 
-.block-link {
+code {
+  line-height: 1.5em;
+}
+
+table {
+  font-size: inherit;
+  border-collapse: collapse;
+}
+
+img {
   display: block;
-  color: initial;
-  text-decoration: none;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+th, td {
+  padding: 5px 15px;
+  border: 1px solid #EEE;
 }

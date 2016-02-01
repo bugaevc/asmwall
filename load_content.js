@@ -43,9 +43,11 @@ function renderPage(command) {
     if (command) {
         document.title = command + ' - ' + initialTitle;
         $in.removeClass("instructions");
+        $in.addClass("details");
     } else {
         document.title = initialTitle;
         $in.addClass("instructions");
+        $in.removeClass("details");
     }
     if (md)
         $in.html(marked(md));
