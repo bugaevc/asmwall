@@ -77,8 +77,8 @@ $.get("data.md", function (data) {
 
 $(document).on("click", ".instructions > p > a", function (event) {
     var $this = $(this);
-    // check for clicks on [permalink]
-    if ($this.offset().left + $this.width() - event.pageX < 75)
+    // check for clicks on [link]
+    if ($this.offset().left + $this.width() - event.pageX < 35)
         return true;
     var details = $this.next(".details");
     if (details.length) {
@@ -102,4 +102,3 @@ $(document).on("click", ".instructions > p > a", function (event) {
         .slideDown();
     return false;
 });
-
