@@ -597,21 +597,6 @@ and push a pointer to it onto the stack after all the arguments. The callee then
 leave its return value in that memory. The callee is also required to pop the pointer from
 the stack, which is usually done with `ret 4`.
 
-### fastcall
-
-The fastcall convention is very similar to cdecl. The difference is that the first two
-function arguments are not pushed onto the stack, but passed in `ecx` and `edx` registers,
-respectively. This allows for simple functions to be shorter and operate faster.
-
-For example, this is the function that subtracts two numbers:
-
-```
-diff:
-    mov eax, ecx
-    sub eax, edx
-    ret
-```
-
 ### stdcall
 
 The stdcall convention is very similar to cdecl. The difference is that the callee is
@@ -625,6 +610,23 @@ diff:
     mov eax, dword[esp+4]
     sub eax, dword[esp+8]
     ret 8
+```
+
+### fastcall
+
+The fastcall convention is very similar to cdecl and stdcall. Like in stdcall, the callee is
+responsible for cleaning up the stack. The difference is that the first two
+function arguments are not pushed onto the stack, but passed in `ecx` and `edx` registers,
+respectively. This allows for simple functions to be shorter and operate faster.
+
+For example, this is the function that calculates the sum of three numbers:
+
+```
+sum:
+    mov eax, ecx
+    add eax, edx
+    add eax, dword[esp+4]
+    ret 4
 ```
 
 # String Instructions
